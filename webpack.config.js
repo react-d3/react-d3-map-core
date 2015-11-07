@@ -17,7 +17,8 @@ module.exports = [{
   entry: {
     container: './example/src/container.jsx',
     polygon: './example/src/polygon.jsx',
-    mesh: './example/src/mesh.jsx'
+    mesh: './example/src/mesh.jsx',
+    graticule: './example/src/graticule.jsx'
   },
 
   output: {

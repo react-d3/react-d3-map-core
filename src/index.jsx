@@ -26,5 +26,10 @@ import {
 	default as Mesh
 } from './mesh';
 
+import {
+	default as Graticule,
+} from './graticule'
+
 export {Polygon as Polygon}
 export {Mesh as Mesh}
+export {Graticule as Graticule}

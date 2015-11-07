@@ -21,8 +21,7 @@ export default class Mesh extends Component {
 
   _mkMesh(dom) {
     const {
-      dataMesh,
-      polygonClass
+      dataMesh
     } = this.props;
 
     var proj = projection(this.props);
