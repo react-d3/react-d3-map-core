@@ -2,6 +2,10 @@ examples = [
   {
     "link": "container",
     "title": "Container"
+  },
+  {
+    "link": "polygon",
+    "title": "Polygon"
   }
 ];
 

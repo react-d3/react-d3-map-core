@@ -7,10 +7,6 @@ import {
 } from 'react';
 
 import {
-  default as ReactDOM
-} from 'react-dom';
-
-import {
   default as CommonProps,
 } from '../commonProps';
 

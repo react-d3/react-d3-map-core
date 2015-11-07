@@ -15,7 +15,8 @@ module.exports = [{
   name: 'react-d3-map-core-example-es5',
   devtool: ENV ? "source-map": '',
   entry: {
-    container: './example/src/container.jsx'
+    container: './example/src/container.jsx',
+    polygon: './example/src/polygon.jsx'
   },
 
   output: {
@@ -42,7 +43,14 @@ module.exports = [{
   },
 
   plugins: ENV ? [
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
-  ]:[]
+    new webpack.optimize.UglifyJsPlugin({minimize: true}),
+    new webpack.ProvidePlugin({
+      'd3': 'd3'
+    })
+  ]:[
+    new webpack.ProvidePlugin({
+      'd3': 'd3'
+    })
+  ]
 
 }];
