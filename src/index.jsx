@@ -22,4 +22,9 @@ import {
 	default as Polygon,
 } from './polygon';
 
+import {
+	default as Mesh
+} from './mesh';
+
 export {Polygon as Polygon}
+export {Mesh as Mesh}

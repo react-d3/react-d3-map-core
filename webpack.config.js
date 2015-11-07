@@ -16,7 +16,8 @@ module.exports = [{
   devtool: ENV ? "source-map": '',
   entry: {
     container: './example/src/container.jsx',
-    polygon: './example/src/polygon.jsx'
+    polygon: './example/src/polygon.jsx',
+    mesh: './example/src/mesh.jsx'
   },
 
   output: {

@@ -9,8 +9,8 @@
   fill: #222;
 }
 
-.boundary {
+.mesh {
   fill: none;
-  stroke: #fff;
+  stroke: #CCC;
   stroke-width: .5px;
 }
