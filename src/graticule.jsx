@@ -18,6 +18,10 @@ import {
   projection
 } from './utils/projection';
 
+import {
+  geoPath
+} from './utils/geoPath';
+
 export default class Graticule extends Component {
   constructor(props) {
     super (props);
@@ -37,20 +41,19 @@ export default class Graticule extends Component {
     } = this.props;
 
     var proj = projection(this.props);
-
+    var geo = geoPath(this.props, proj);
     var grati = d3.select(dom)
-      .attr('class', 'react-d3-map-core__graticule_group');
 
-    grati.append('path')
+    grati
       .datum(graticule(this.props))
       .attr('class', `${graticuleClass} graticule`)
-      .attr('d', proj)
+      .attr('d', geo)
 
     return grati;
   }
 
   render () {
-    var graticuleGroup = ReactFauxDOM.createElement('g');
+    var graticuleGroup = ReactFauxDOM.createElement('path');
     var chart = this._mkGraticule(graticuleGroup);
 
     return chart.node().toReact();

@@ -14,6 +14,10 @@ import {
   projection
 } from './utils/projection';
 
+import {
+  geoPath
+} from './utils/geoPath';
+
 export default class Polygon extends Component {
   constructor(props) {
     super (props);
@@ -35,20 +39,19 @@ export default class Polygon extends Component {
     } = this.props;
 
     var proj = projection(this.props);
+    var geo = geoPath(this.props, proj);
+    var polygon = d3.select(dom);
 
-    var polygon = d3.select(dom)
-      .attr('class', 'react-d3-map-core__polygon_group');
-
-    polygon.append('path')
+    polygon
       .datum(data)
       .attr('class', `${polygonClass} polygon`)
-      .attr("d", proj)
+      .attr("d", geo)
 
     return polygon;
   }
 
   render () {
-    var poly = ReactFauxDOM.createElement('g');
+    var poly = ReactFauxDOM.createElement('path');
     var chart = this._mkPolygon(poly)
 
     return chart.node().toReact();

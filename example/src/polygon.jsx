@@ -2,9 +2,10 @@
 
 var React = require('react');
 var ReactDOM = require('react-dom');
+var topojson = require('topojson');
 var Chart = require('../../lib/index').Chart;
 var Polygon = require('../../lib/index').Polygon;
-var topojson = require('topojson');
+
 
 // Example
 // http://bl.ocks.org/mbostock/3757132

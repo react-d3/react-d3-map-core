@@ -1,7 +1,7 @@
 {
-  "name": "react-d3-map",
-  "version": "0.0.1",
-  "description": "react-d3 map component",
+  "name": "react-d3-map-core",
+  "version": "0.1.0",
+  "description": "react-d3 map core component",
   "main": "./lib/index.js",
   "scripts": {
     "build": "rm -rf ./lib && babel -w --stage 0 src --out-dir lib"

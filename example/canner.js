@@ -18,6 +18,14 @@ examples = [
   {
     "link": "map",
     "title": "Map"
+  },
+  {
+    "link": "point",
+    "title": "Point"
+  },
+  {
+    "link": "centroid",
+    "title": "Centroid"
   }
 ];
 

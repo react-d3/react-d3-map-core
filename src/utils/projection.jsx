@@ -2,10 +2,10 @@
 
 export function projection(props) {
   const {
-    projection
+    projection,
+    pointRadius
   } = props;
 
-  var geoPath = d3.geo.path();
   var projFunc;
 
   if(projection === 'albers')
@@ -40,10 +40,7 @@ export function projection(props) {
 
   var proj = _mkProjectionSettings(props, projFunc);
 
-  geoPath = geoPath.projection(proj);
-
-  return geoPath;
-
+  return proj;
 }
 
 function _mkProjectionSettings(props, func) {

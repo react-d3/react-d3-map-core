@@ -14,6 +14,10 @@ import {
   projection
 } from './utils/projection';
 
+import {
+  geoPath
+} from './utils/geoPath';
+
 export default class Mesh extends Component {
   constructor(props) {
     super (props);
@@ -24,7 +28,7 @@ export default class Mesh extends Component {
   }
 
   static propTypes = {
-    dataMesh: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
     meshClass: PropTypes.string
   }
 
@@ -35,20 +39,20 @@ export default class Mesh extends Component {
     } = this.props;
 
     var proj = projection(this.props);
+    var geo = geoPath(this.props, proj);
 
-    var mesh = d3.select(dom)
-      .attr('class', 'react-d3-map-core__mesh_group');
+    var mesh = d3.select(dom);
 
-    mesh.append('path')
+    mesh
       .datum(data)
       .attr('class', `${meshClass} mesh`)
-      .attr("d", proj);
+      .attr("d", geo);
 
     return mesh;
   }
 
   render () {
-    var meshGroup = ReactFauxDOM.createElement('g');
+    var meshGroup = ReactFauxDOM.createElement('path');
     var chart = this._mkMesh(meshGroup)
 
     return chart.node().toReact();

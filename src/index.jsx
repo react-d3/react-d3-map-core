@@ -28,8 +28,23 @@ import {
 
 import {
 	default as Graticule,
-} from './graticule'
+} from './graticule';
+
+import {
+	default as Point
+} from './point';
+
+import {
+  default as PointText
+} from './pointText'
+
+import {
+  default as Centroid
+} from './centroid'
 
 export {Polygon as Polygon}
 export {Mesh as Mesh}
 export {Graticule as Graticule}
+export {Point as Point}
+export {PointText as PointText}
+export {Centroid as Centroid}

@@ -19,7 +19,9 @@ module.exports = [{
     polygon: './example/src/polygon.jsx',
     mesh: './example/src/mesh.jsx',
     graticule: './example/src/graticule.jsx',
-    map: './example/src/map.jsx'
+    map: './example/src/map.jsx',
+    point: './example/src/point.jsx',
+    centroid: './example/src/centroid.jsx'
   },
 
   output: {
