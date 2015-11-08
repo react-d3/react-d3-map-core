@@ -19,18 +19,29 @@ export default class Mesh extends Component {
     super (props);
   }
 
+  static defaultProps = {
+    meshClass: 'react-d3-map-core__mesh'
+  }
+
+  static propTypes = {
+    dataMesh: PropTypes.object.isRequired,
+    meshClass: PropTypes.string
+  }
+
   _mkMesh(dom) {
     const {
-      dataMesh
+      data,
+      meshClass
     } = this.props;
 
     var proj = projection(this.props);
 
     var mesh = d3.select(dom)
-      .attr('class', 'mesh');
+      .attr('class', 'react-d3-map-core__mesh_group');
 
     mesh.append('path')
-      .datum(dataMesh)
+      .datum(data)
+      .attr('class', `${meshClass} mesh`)
       .attr("d", proj);
 
     return mesh;

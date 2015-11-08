@@ -14,6 +14,10 @@ examples = [
   {
     "link": "graticule",
     "title": "Graticule"
+  },
+  {
+    "link": "map",
+    "title": "Map"
   }
 ];
 

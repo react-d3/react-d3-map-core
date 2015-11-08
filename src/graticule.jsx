@@ -23,6 +23,14 @@ export default class Graticule extends Component {
     super (props);
   }
 
+  static defaultProps = {
+    graticuleClass: 'react-d3-map-core__graticule'
+  }
+
+  static propTypes = {
+    graticuleClass: PropTypes.string
+  }
+
   _mkGraticule(dom) {
     const {
       graticuleClass
@@ -30,7 +38,8 @@ export default class Graticule extends Component {
 
     var proj = projection(this.props);
 
-    var grati = d3.select(dom);
+    var grati = d3.select(dom)
+      .attr('class', 'react-d3-map-core__graticule_group');
 
     grati.append('path')
       .datum(graticule(this.props))

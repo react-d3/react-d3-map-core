@@ -16,7 +16,6 @@ var topojson = require('topojson');
   var title = "test chart lib"
   var topodata = require('json!../data/world-50m.json');
 
-  var data = topojson.mesh(topodata, topodata.objects.countries, function(a, b) { return a !== b; });
   var scale = (width + 1) / 2 / Math.PI;
   var translate = [width / 2, height / 2];
   var precision = .1;

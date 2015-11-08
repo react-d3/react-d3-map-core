@@ -19,25 +19,29 @@ export default class Polygon extends Component {
     super (props);
   }
 
+  static defaultProps = {
+    polygonClass: 'react-d3-map-core__polygon'
+  }
+
+  static propTypes = {
+    data: PropTypes.object.isRequired,
+    polygonClass: PropTypes.string
+  }
+
   _mkPolygon(dom) {
     const {
-      dataFeatures,
+      data,
       polygonClass
     } = this.props;
 
     var proj = projection(this.props);
 
     var polygon = d3.select(dom)
-      .attr('class', 'polygon');
+      .attr('class', 'react-d3-map-core__polygon_group');
 
-    if(!Array.isArray(dataFeatures))
-      var data = [dataFeatures]
-    else
-      var data = dataFeatures
-
-    polygon.selectAll('path')
-      .data(data)
-    .enter().append('path')
+    polygon.append('path')
+      .datum(data)
+      .attr('class', `${polygonClass} polygon`)
       .attr("d", proj)
 
     return polygon;

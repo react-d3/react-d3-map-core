@@ -26,8 +26,7 @@ export default class ChartContainer extends Component {
 
   render() {
     const {
-      width,
-      chartSeries
+      width
     } = this.props;
 
     var divStyle = {
