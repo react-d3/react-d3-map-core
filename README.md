@@ -19,13 +19,13 @@ var ReactDOM = require('react-dom');
 var topojson = require('topojson');
 var Chart = require('react-d3-map-core').Chart;
 var Polygon = require('react-d3-map-core').Polygon;
+var projectionFunc = require('react-d3-map-core').projection;
+var geoPath = require('react-d3-map-core').geoPath;
 
-function() {
+(function() {
   var width = 960,
-  height = 960,
-  margins = {top: 20, right: 50, bottom: 20, left: 50};
+  height = 960
 
-  var title = "test chart lib"
   var topodata = require('json!../data/world-50m.json');
 
   var data = topojson.feature(topodata, topodata.objects.land);
@@ -35,27 +35,33 @@ function() {
   var projection = 'mercator';
   var polygonClass = 'polygon-test';
 
+  var proj = projectionFunc({
+    projection: projection,
+    scale: scale,
+    translate: translate,
+    precision: precision
+  });
+  var geo = geoPath(proj);
+
+
   ReactDOM.render(
     <Chart
-      title= {title}
       width= {width}
       height= {height}
-      margins= {margins}
     >
       <Polygon
         width= {width}
         height= {height}
         data= {data}
-        projection = {projection}
-        scale= {scale}
-        translate= {translate}
-        precision= {precision}
+        geoPath= {geo}
         polygonClass={polygonClass}
       />
     </Chart>
     , document.getElementById('blank-polygon')
   )
-}
+
+})()
+
 ```
 
 ## Components
