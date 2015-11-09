@@ -27,6 +27,7 @@ export default class PointText extends Component {
 
   static propTypes = {
     data: PropTypes.object.isRequired,
+    projection: PropTypes.func.isRequired,
     pointTextClass: PropTypes.string
   }
 
@@ -37,16 +38,16 @@ export default class PointText extends Component {
       text,
       x,
       dy,
-      textAnchor
+      textAnchor,
+      projection
     } = this.props;
 
-    var proj = projection(this.props);
     var pointText = d3.select(dom);
 
     pointText
       .datum(data)
       .attr('class', `${pointTextClass} pointText`)
-      .attr("transform", (d) => { return 'translate(' + proj(d.geometry.coordinates) + ')'})
+      .attr("transform", (d) => { return 'translate(' + projection(d.geometry.coordinates) + ')'})
       .attr("dy", dy)
       .attr("x", x)
       .style("text-anchor", textAnchor)

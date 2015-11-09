@@ -5,16 +5,16 @@ var ReactDOM = require('react-dom');
 var topojson = require('topojson');
 var Chart = require('../../lib/index').Chart;
 var Polygon = require('../../lib/index').Polygon;
+var projectionFunc = require('../../lib/index').projection;
+var geoPath = require('../../lib/index').geoPath;
 
 
 // Example
 // http://bl.ocks.org/mbostock/3757132
 (function() {
   var width = 960,
-  height = 960,
-  margins = {top: 20, right: 50, bottom: 20, left: 50};
+  height = 960
 
-  var title = "test chart lib"
   var topodata = require('json!../data/world-50m.json');
 
   var data = topojson.feature(topodata, topodata.objects.land);
@@ -24,21 +24,25 @@ var Polygon = require('../../lib/index').Polygon;
   var projection = 'mercator';
   var polygonClass = 'polygon-test';
 
+  var proj = projectionFunc({
+    projection: projection,
+    scale: scale,
+    translate: translate,
+    precision: precision
+  });
+  var geo = geoPath(proj);
+
+
   ReactDOM.render(
     <Chart
-      title= {title}
       width= {width}
       height= {height}
-      margins= {margins}
     >
       <Polygon
         width= {width}
         height= {height}
         data= {data}
-        projection = {projection}
-        scale= {scale}
-        translate= {translate}
-        precision= {precision}
+        geoPath= {geo}
         polygonClass={polygonClass}
       />
     </Chart>

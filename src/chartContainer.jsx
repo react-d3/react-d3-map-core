@@ -26,16 +26,22 @@ export default class ChartContainer extends Component {
 
   render() {
     const {
-      width
+      width,
+      title
     } = this.props;
+
+    var chartTitle;
 
     var divStyle = {
       width: width
     };
 
+    if(title)
+      chartTitle = <ChartTitle {...this.props}/>;
+
     return (
       <div style={divStyle}>
-        <ChartTitle {...this.props}/>
+        {chartTitle}
         <ChartSvg {...this.props}/>
       </div>
     )

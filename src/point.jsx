@@ -30,23 +30,23 @@ export default class Point extends Component {
 
   static propTypes = {
     data: PropTypes.object.isRequired,
+    geoPath: PropTypes.func.isRequired,
     pointClass: PropTypes.string
   }
 
   _mkPoint(dom) {
     const {
       data,
-      pointClass
+      pointClass,
+      geoPath
     } = this.props;
 
-    var proj = projection(this.props);
-    var geo = geoPath(this.props, proj);
     var point = d3.select(dom);
 
     point
       .datum(data)
       .attr('class', `${pointClass} point`)
-      .attr("d", geo);
+      .attr("d", geoPath);
 
     return point;
   }

@@ -16,8 +16,7 @@ export default class ChartTitle extends Component {
   }
 
   static defaultProps = Object.assign(CommonProps, {
-    titleClassName: 'react-d3-core__container_title',
-    title: 'Chart Title'
+    titleClassName: 'react-d3-core__container_title'
   })
 
   static propTypes = {

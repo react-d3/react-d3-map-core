@@ -8,11 +8,13 @@ var Chart = require('../../lib/index').Chart;
 var Point = require('../../lib/index').Point;
 var Centroid = require('../../lib/index').Centroid;
 
+var projectionFunc = require('../../lib/index').projection;
+var geoPath = require('../../lib/index').geoPath;
+
 // Example
 (function() {
   var width = 960,
-  height = 1160,
-  margins = {top: 20, right: 50, bottom: 20, left: 50};
+  height = 1160;
 
   var title = "test chart lib"
   var uk = require('json!../data/uk.json');
@@ -29,17 +31,24 @@ var Centroid = require('../../lib/index').Centroid;
   var pointRadius = 2;
   var text = function(d) { return d.properties.name; };
 
+  var proj = projectionFunc({
+    projection: projection,
+    scale: scale,
+    translate: translate,
+    parallels: parallels,
+    rotate: rotate,
+    center: center
+  });
+  var geo = geoPath(proj, {
+    pointRadius: pointRadius
+  });
+
   var centroid = uk_centroid.map(function(d, i) {
     return (
       <Centroid
         key={i}
         data={d}
-        projection = {projection}
-        scale= {scale}
-        parallels= {parallels}
-        rotate= {rotate}
-        center= {center}
-        translate= {translate}
+        geoPath= {geo}
         text={text}
       />
     )
@@ -50,17 +59,10 @@ var Centroid = require('../../lib/index').Centroid;
       title= {title}
       width= {width}
       height= {height}
-      margins= {margins}
     >
       <Point
         data= {data}
-        projection = {projection}
-        scale= {scale}
-        parallels= {parallels}
-        rotate= {rotate}
-        center= {center}
-        translate= {translate}
-        pointRadius= {pointRadius}
+        geoPath= {geo}
       />
       {centroid}
     </Chart>

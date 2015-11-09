@@ -31,6 +31,7 @@ export default class Centroid extends Component {
 
   static propTypes = {
     data: PropTypes.object.isRequired,
+    geoPath: PropTypes.func.isRequired,
     centroidClass: PropTypes.string
   }
 
@@ -40,16 +41,15 @@ export default class Centroid extends Component {
       centroidClass,
       text,
       dy,
+      geoPath
     } = this.props;
 
-    var proj = projection(this.props);
-    var geo = geoPath(this.props, proj);
     var centroid = d3.select(dom);
 
     centroid
       .datum(data)
       .attr('class', `${centroidClass} centroid`)
-      .attr("transform", (d) => { return 'translate(' + geo.centroid(d) + ')'})
+      .attr("transform", (d) => { return 'translate(' + geoPath.centroid(d) + ')'})
       .attr("dy", dy)
       .text(text)
 

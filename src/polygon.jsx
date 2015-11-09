@@ -29,23 +29,23 @@ export default class Polygon extends Component {
 
   static propTypes = {
     data: PropTypes.object.isRequired,
+    geoPath: PropTypes.func.isRequired,
     polygonClass: PropTypes.string
   }
 
   _mkPolygon(dom) {
     const {
       data,
-      polygonClass
+      polygonClass,
+      geoPath
     } = this.props;
 
-    var proj = projection(this.props);
-    var geo = geoPath(this.props, proj);
     var polygon = d3.select(dom);
 
     polygon
       .datum(data)
       .attr('class', `${polygonClass} polygon`)
-      .attr("d", geo)
+      .attr("d", geoPath)
 
     return polygon;
   }

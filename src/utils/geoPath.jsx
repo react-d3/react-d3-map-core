@@ -1,6 +1,8 @@
 "use strict";
 
-export function geoPath(props, proj) {
+export function geoPath(proj, props) {
+  props = props || {}
+
   const {
     pointRadius
   } = props;

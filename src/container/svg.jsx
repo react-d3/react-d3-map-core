@@ -25,7 +25,6 @@ export default class ChartSvg extends Component {
     id: PropTypes.string,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
-    margins: PropTypes.object.isRequired,
     svgClassName: PropTypes.string.isRequired,
   }
 
@@ -33,13 +32,10 @@ export default class ChartSvg extends Component {
     const {
       height,
       width,
-      margins,
       svgClassName,
       id,
       children
     } = this.props;
-
-    var t = `translate(${margins.left}, ${margins.top})`;
 
     return (
       <svg
@@ -49,9 +45,7 @@ export default class ChartSvg extends Component {
         id = {id}
         ref = "svgContainer"
       >
-        <g
-          transform = {t}
-        >
+        <g>
           {children}
         </g>
       </svg>

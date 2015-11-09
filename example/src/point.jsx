@@ -8,6 +8,10 @@ var Chart = require('../../lib/index').Chart;
 var Point = require('../../lib/index').Point;
 var PointText = require('../../lib/index').PointText;
 
+var projectionFunc = require('../../lib/index').projection;
+var geoPath = require('../../lib/index').geoPath;
+
+
 // Example
 (function() {
   var width = 960,
@@ -31,17 +35,24 @@ var PointText = require('../../lib/index').PointText;
   var x = function(d) { return d.geometry.coordinates[0] > -1 ? 6 : -6; }
   var textAnchor = function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; }
 
+  var proj = projectionFunc({
+    projection: projection,
+    scale: scale,
+    translate: translate,
+    parallels: parallels,
+    rotate: rotate,
+    center: center
+  });
+  var geo = geoPath(proj, {
+    pointRadius: pointRadius
+  });
+
   var pointText = uk_points.map(function(d, i) {
     return (
       <PointText
         key={i}
         data={d}
-        projection = {projection}
-        scale= {scale}
-        parallels= {parallels}
-        rotate= {rotate}
-        center= {center}
-        translate= {translate}
+        projection= {proj}
         text={text}
         x={x}
         textAnchor= {textAnchor}
@@ -58,13 +69,7 @@ var PointText = require('../../lib/index').PointText;
     >
       <Point
         data= {data}
-        projection = {projection}
-        scale= {scale}
-        parallels= {parallels}
-        rotate= {rotate}
-        center= {center}
-        translate= {translate}
-        pointRadius= {pointRadius}
+        geoPath= {geo}
       />
       {pointText}
     </Chart>

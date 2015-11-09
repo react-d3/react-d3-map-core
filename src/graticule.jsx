@@ -32,22 +32,22 @@ export default class Graticule extends Component {
   }
 
   static propTypes = {
+    geoPath: PropTypes.func.isRequired,
     graticuleClass: PropTypes.string
   }
 
   _mkGraticule(dom) {
     const {
-      graticuleClass
+      graticuleClass,
+      geoPath
     } = this.props;
 
-    var proj = projection(this.props);
-    var geo = geoPath(this.props, proj);
     var grati = d3.select(dom)
 
     grati
       .datum(graticule(this.props))
       .attr('class', `${graticuleClass} graticule`)
-      .attr('d', geo)
+      .attr('d', geoPath)
 
     return grati;
   }

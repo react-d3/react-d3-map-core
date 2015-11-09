@@ -29,24 +29,23 @@ export default class Mesh extends Component {
 
   static propTypes = {
     data: PropTypes.object.isRequired,
+    geoPath: PropTypes.func.isRequired,
     meshClass: PropTypes.string
   }
 
   _mkMesh(dom) {
     const {
       data,
-      meshClass
+      meshClass,
+      geoPath
     } = this.props;
-
-    var proj = projection(this.props);
-    var geo = geoPath(this.props, proj);
 
     var mesh = d3.select(dom);
 
     mesh
       .datum(data)
       .attr('class', `${meshClass} mesh`)
-      .attr("d", geo);
+      .attr("d", geoPath);
 
     return mesh;
   }
