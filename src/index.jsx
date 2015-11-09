@@ -48,3 +48,27 @@ export {Graticule as Graticule}
 export {Point as Point}
 export {PointText as PointText}
 export {Centroid as Centroid}
+
+
+// Function
+
+import {
+	geoPath
+} from './utils/geoPath';
+
+import {
+	graticule
+} from './utils/graticule';
+
+import {
+	projection
+} from './utils/projection';
+
+import {
+	scale
+} from './utils/scale';
+
+export {geoPath}
+export {graticule}
+export {projection}
+export {scale}
