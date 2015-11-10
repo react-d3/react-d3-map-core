@@ -56,8 +56,8 @@ export default class Voronoi extends Component {
     .enter().append('path')
       .attr("d", (d) => {return d.cell.length ? "M" + d.cell.join("L") + "Z" : null; })
       .datum((d) => {return d; })
-      .on("mouseover", onMouseOver)
-      .on("mouseout", onMouseOut)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
       .style('fill', 'none')
       .style('pointer-events', 'all');
 

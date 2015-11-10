@@ -46,8 +46,8 @@ var geoPath = require('../../lib/index').geoPath;
 
   var x = function(d) { return +proj(d.geometry.coordinates)[0]; }
   var y = function(d) { return +proj(d.geometry.coordinates)[1]; }
-  var onMouseOut = function(d, i) {console.log(d, i);}
-  var onMouseOver = function(d, i) {console.log(d, i);}
+  var onMouseOut = function(dom, d, i) {console.log(d, i);}
+  var onMouseOver = function(dom, d, i) {console.log(d, i);}
 
 
   var points = data.features.map(function(d, i) {
