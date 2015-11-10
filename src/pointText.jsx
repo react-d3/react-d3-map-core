@@ -11,10 +11,6 @@ import {
   default as ReactFauxDOM,
 } from 'react-faux-dom';
 
-import {
-  projection
-} from './utils/projection';
-
 export default class PointText extends Component {
   constructor(props) {
     super (props);

@@ -14,14 +14,6 @@ import {
   graticule
 } from './utils/graticule';
 
-import {
-  projection
-} from './utils/projection';
-
-import {
-  geoPath
-} from './utils/geoPath';
-
 export default class Graticule extends Component {
   constructor(props) {
     super (props);

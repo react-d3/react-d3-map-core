@@ -1,4 +1,3 @@
-
 "use strict";
 
 import {
@@ -11,9 +10,9 @@ import {
   default as ReactFauxDOM,
 } from 'react-faux-dom';
 
-export default class Centroid extends Component {
+export default class Circle extends Component {
   constructor(props) {
-    super (props);
+    super(props);
   }
 
   static defaultProps = {
@@ -24,35 +23,32 @@ export default class Centroid extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     geoPath: PropTypes.func.isRequired,
-    centroidClass: PropTypes.string
+    circleClass: PropTypes.string
   }
 
-  _mkCentroid(dom) {
+  _mkCircle(dom) {
     const {
       data,
-      centroidClass,
-      text,
-      dy,
-      geoPath
+      circleClass,
+      geoPath,
+      r
     } = this.props;
 
-    var centroid = d3.select(dom);
+    var circle = d3.select(dom);
 
-    centroid
+    circle
       .datum(data)
-      .attr('class', `${centroidClass} centroid`)
+      .attr('class', `${circleClass} bubble`)
       .attr("transform", (d) => { return 'translate(' + geoPath.centroid(d) + ')'})
-      .attr("dy", dy)
-      .text(text)
+      .attr("r", r)
 
-    return centroid;
+    return circle;
   }
 
-  render () {
-    var centroidGroup = ReactFauxDOM.createElement('text');
-    var chart = this._mkCentroid(centroidGroup)
+  render() {
+    var circle = ReactFauxDOM.createElement('circle');
+    var chart = this._mkCircle(circle)
 
     return chart.node().toReact();
   }
-
 }

@@ -34,6 +34,8 @@ export function projection(props) {
     projFunc = d3.geo.stereographic();
   else if (projection === 'transverseMercator')
     projFunc = d3.geo.transverseMercator();
+  else if (projection === null)
+    return null;
   else
     new Error(`Please check your projection setting. "${projection}" projection is invalid. `)
 

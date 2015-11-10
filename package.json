@@ -1,6 +1,6 @@
 {
   "name": "react-d3-map-core",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "react-d3 map core component",
   "main": "./lib/index.js",
   "scripts": {

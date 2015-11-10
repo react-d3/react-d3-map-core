@@ -10,14 +10,6 @@ import {
   default as ReactFauxDOM,
 } from 'react-faux-dom';
 
-import {
-  projection
-} from './utils/projection';
-
-import {
-  geoPath
-} from './utils/geoPath';
-
 export default class Mesh extends Component {
   constructor(props) {
     super (props);
