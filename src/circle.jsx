@@ -26,6 +26,14 @@ export default class Circle extends Component {
     circleClass: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.xTooltip !== this.props.xTooltip ||
+      nextProps.yTooltip !== this.props.yTooltip)
+      return false;
+    else
+      return true;
+  }
+
   _mkCircle(dom) {
     const {
       data,

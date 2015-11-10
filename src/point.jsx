@@ -25,6 +25,14 @@ export default class Point extends Component {
     pointClass: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.xTooltip !== this.props.xTooltip ||
+      nextProps.yTooltip !== this.props.yTooltip)
+      return false;
+    else
+      return true;
+  }
+
   _mkPoint(dom) {
     const {
       data,

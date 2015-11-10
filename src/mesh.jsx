@@ -25,6 +25,14 @@ export default class Mesh extends Component {
     meshClass: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.xTooltip !== this.props.xTooltip ||
+      nextProps.yTooltip !== this.props.yTooltip)
+      return false;
+    else
+      return true;
+  }
+
   _mkMesh(dom) {
     const {
       data,

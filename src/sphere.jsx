@@ -24,6 +24,14 @@ export default class Sphere extends Component {
     sphereClass: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.xTooltip !== this.props.xTooltip ||
+      nextProps.yTooltip !== this.props.yTooltip)
+      return false;
+    else
+      return true;
+  }
+
   _mkGraticule(dom) {
     const {
       sphereClass,

@@ -16,13 +16,16 @@ export default class Voronoi extends Component {
   }
 
   static defaultProps = {
-    initVoronoi: d3.geom.voronoi,
     onMouseOver: (d) => {},
     onMouseOut: (d) => {}
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return false;
+    if(nextProps.xTooltip !== this.props.xTooltip ||
+      nextProps.yTooltip !== this.props.yTooltip)
+      return false;
+    else
+      return true;
   }
 
   _mkVoronoi (dom) {

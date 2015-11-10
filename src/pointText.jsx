@@ -27,6 +27,14 @@ export default class PointText extends Component {
     pointTextClass: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.xTooltip !== this.props.xTooltip ||
+      nextProps.yTooltip !== this.props.yTooltip)
+      return false;
+    else
+      return true;
+  }
+
   _mkPointText(dom) {
     const {
       data,

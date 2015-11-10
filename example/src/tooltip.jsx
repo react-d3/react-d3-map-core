@@ -40,6 +40,12 @@ var geoPath = require('../../lib/index').geoPath;
       })
     },
 
+    _click: function() {
+      this.setState({
+        test: 'hi'
+      })
+    },
+
     render: function() {
 
       var width = 960,
@@ -83,9 +89,10 @@ var geoPath = require('../../lib/index').geoPath;
             key= {i}
             data= {d}
             geoPath= {geo}
+            {...this.state}
           />
         )
-      })
+      }.bind(this))
 
       var tooltip = (<Tooltip
         {...this.state}
@@ -98,6 +105,7 @@ var geoPath = require('../../lib/index').geoPath;
           <Chart
             width= {width}
             height= {height}
+            {...this.state}
           >
             <Voronoi
               data= {data.features}
@@ -108,9 +116,12 @@ var geoPath = require('../../lib/index').geoPath;
               height= {height}
               onMouseOut= {onMouseOut}
               onMouseOver= {onMouseOver}
+              {...this.state}
             />
             {points}
           </Chart>
+
+          <button onClick={this._click}>Click me</button>
         </div>
       )
     }

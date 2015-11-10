@@ -27,6 +27,14 @@ export default class Centroid extends Component {
     centroidClass: PropTypes.string
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.xTooltip !== this.props.xTooltip ||
+      nextProps.yTooltip !== this.props.yTooltip)
+      return false;
+    else
+      return true;
+  }
+
   _mkCentroid(dom) {
     const {
       data,
