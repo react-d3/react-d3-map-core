@@ -42,12 +42,17 @@ import {
   default as Centroid
 } from './centroid'
 
+import {
+	default as Circle
+} from './circle'
+
 export {Polygon as Polygon}
 export {Mesh as Mesh}
 export {Graticule as Graticule}
 export {Point as Point}
 export {PointText as PointText}
 export {Centroid as Centroid}
+export {Circle as Circle}
 
 
 // Function
