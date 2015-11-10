@@ -22,7 +22,8 @@ module.exports = [{
     map: './example/src/map.jsx',
     point: './example/src/point.jsx',
     centroid: './example/src/centroid.jsx',
-    voronoi: './example/src/voronoi.jsx'
+    voronoi: './example/src/voronoi.jsx',
+    sphere: './example/src/sphere.jsx'
   },
 
   output: {

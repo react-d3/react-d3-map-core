@@ -50,6 +50,10 @@ import {
 	default as Voronoi
 } from './voronoi'
 
+import {
+	default as Sphere
+} from './sphere'
+
 export {Polygon as Polygon}
 export {Mesh as Mesh}
 export {Graticule as Graticule}
@@ -58,6 +62,7 @@ export {PointText as PointText}
 export {Centroid as Centroid}
 export {Circle as Circle}
 export {Voronoi as Voronoi}
+export {Sphere as Sphere}
 
 
 // Function
