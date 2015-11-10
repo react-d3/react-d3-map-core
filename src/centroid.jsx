@@ -18,7 +18,9 @@ export default class Centroid extends Component {
 
   static defaultProps = {
     centroidClass: 'react-d3-map-core__centroid',
-    dy: '.35em'
+    dy: '.35em',
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
   }
 
   static propTypes = {
@@ -41,7 +43,9 @@ export default class Centroid extends Component {
       centroidClass,
       text,
       dy,
-      geoPath
+      geoPath,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var centroid = d3.select(dom);
@@ -52,6 +56,8 @@ export default class Centroid extends Component {
       .attr("transform", (d) => { return 'translate(' + geoPath.centroid(d) + ')'})
       .attr("dy", dy)
       .text(text)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     return centroid;
   }

@@ -16,7 +16,9 @@ export default class Mesh extends Component {
   }
 
   static defaultProps = {
-    meshClass: 'react-d3-map-core__mesh'
+    meshClass: 'react-d3-map-core__mesh',
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
   }
 
   static propTypes = {
@@ -37,7 +39,9 @@ export default class Mesh extends Component {
     const {
       data,
       meshClass,
-      geoPath
+      geoPath,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var mesh = d3.select(dom);
@@ -45,7 +49,9 @@ export default class Mesh extends Component {
     mesh
       .datum(data)
       .attr('class', `${meshClass} mesh`)
-      .attr("d", geoPath);
+      .attr("d", geoPath)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     return mesh;
   }

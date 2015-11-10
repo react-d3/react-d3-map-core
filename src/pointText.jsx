@@ -18,7 +18,9 @@ export default class PointText extends Component {
 
   static defaultProps = {
     pointTextClass: 'react-d3-map-core__pointText',
-    dy: '.35em'
+    dy: '.35em',
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
   }
 
   static propTypes = {
@@ -43,7 +45,9 @@ export default class PointText extends Component {
       x,
       dy,
       textAnchor,
-      projection
+      projection,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var pointText = d3.select(dom);
@@ -56,6 +60,8 @@ export default class PointText extends Component {
       .attr("x", x)
       .style("text-anchor", textAnchor)
       .text(text)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     return pointText;
   }

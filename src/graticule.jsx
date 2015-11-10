@@ -20,7 +20,9 @@ export default class Graticule extends Component {
   }
 
   static defaultProps = {
-    graticuleClass: 'react-d3-map-core__graticule'
+    graticuleClass: 'react-d3-map-core__graticule',
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
   }
 
   static propTypes = {
@@ -39,7 +41,9 @@ export default class Graticule extends Component {
   _mkGraticule(dom) {
     const {
       graticuleClass,
-      geoPath
+      geoPath,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var grati = d3.select(dom)
@@ -48,6 +52,8 @@ export default class Graticule extends Component {
       .datum(graticule(this.props))
       .attr('class', `${graticuleClass} graticule`)
       .attr('d', geoPath)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     return grati;
   }
