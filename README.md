@@ -75,6 +75,7 @@ var geoPath = require('react-d3-map-core').geoPath;
 - Graticule
 - Mesh
 - Voronoi
+- Sphere
 - Svg
 - Title
 
