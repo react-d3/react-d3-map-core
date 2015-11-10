@@ -31,7 +31,9 @@ export default class Circle extends Component {
       data,
       circleClass,
       geoPath,
-      r
+      r,
+      x,
+      y
     } = this.props;
 
     var circle = d3.select(dom);
@@ -39,7 +41,7 @@ export default class Circle extends Component {
     circle
       .datum(data)
       .attr('class', `${circleClass} bubble`)
-      .attr("transform", (d) => { return 'translate(' + geoPath.centroid(d) + ')'})
+      .attr("transform", (d) => { return `translate(${x}, ${y})`})
       .attr("r", r)
 
     return circle;
