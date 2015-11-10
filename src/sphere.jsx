@@ -16,6 +16,11 @@ export default class Sphere extends Component {
   }
 
   static defaultProps = {
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
+  }
+
+  static defaultProps = {
     sphereClass: 'react-d3-map-core__sphere'
   }
 
@@ -35,7 +40,9 @@ export default class Sphere extends Component {
   _mkGraticule(dom) {
     const {
       sphereClass,
-      geoPath
+      geoPath,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var sphere = d3.select(dom)
@@ -44,6 +51,8 @@ export default class Sphere extends Component {
       .datum({type: "Sphere"})
       .attr('class', `${sphereClass} sphere`)
       .attr('d', geoPath)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     return sphere;
   }

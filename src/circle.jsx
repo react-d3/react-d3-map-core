@@ -17,7 +17,9 @@ export default class Circle extends Component {
 
   static defaultProps = {
     centroidClass: 'react-d3-map-core__centroid',
-    dy: '.35em'
+    dy: '.35em',
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
   }
 
   static propTypes = {
@@ -41,7 +43,9 @@ export default class Circle extends Component {
       geoPath,
       r,
       x,
-      y
+      y,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var circle = d3.select(dom);
@@ -51,6 +55,8 @@ export default class Circle extends Component {
       .attr('class', `${circleClass} bubble`)
       .attr("transform", (d) => { return `translate(${x}, ${y})`})
       .attr("r", r)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);})
 
     return circle;
   }

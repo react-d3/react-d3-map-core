@@ -22,7 +22,9 @@ export default class Point extends Component {
   static propTypes = {
     data: PropTypes.object.isRequired,
     geoPath: PropTypes.func.isRequired,
-    pointClass: PropTypes.string
+    pointClass: PropTypes.string,
+    onMouseOver: (d) => {},
+    onMouseOut: (d) => {}
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -37,7 +39,9 @@ export default class Point extends Component {
     const {
       data,
       pointClass,
-      geoPath
+      geoPath,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var point = d3.select(dom);
@@ -45,7 +49,9 @@ export default class Point extends Component {
     point
       .datum(data)
       .attr('class', `${pointClass} point`)
-      .attr("d", geoPath);
+      .attr("d", geoPath)
+      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     return point;
   }
