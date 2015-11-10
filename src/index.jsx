@@ -54,6 +54,10 @@ import {
 	default as Sphere
 } from './sphere'
 
+import {
+	default as Tooltip
+} from './tooltip'
+
 export {Polygon as Polygon}
 export {Mesh as Mesh}
 export {Graticule as Graticule}
@@ -63,7 +67,7 @@ export {Centroid as Centroid}
 export {Circle as Circle}
 export {Voronoi as Voronoi}
 export {Sphere as Sphere}
-
+export {Tooltip as Tooltip}
 
 // Function
 

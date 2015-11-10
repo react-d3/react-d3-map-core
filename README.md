@@ -78,6 +78,7 @@ var geoPath = require('react-d3-map-core').geoPath;
 - Sphere
 - Svg
 - Title
+- Tooltip
 
 ## Export functions
 

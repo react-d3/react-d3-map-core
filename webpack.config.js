@@ -23,7 +23,8 @@ module.exports = [{
     point: './example/src/point.jsx',
     centroid: './example/src/centroid.jsx',
     voronoi: './example/src/voronoi.jsx',
-    sphere: './example/src/sphere.jsx'
+    sphere: './example/src/sphere.jsx',
+    tooltip: './example/src/tooltip.jsx'
   },
 
   output: {
