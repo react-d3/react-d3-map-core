@@ -46,6 +46,10 @@ import {
 	default as Circle
 } from './circle'
 
+import {
+	default as Voronoi
+} from './voronoi'
+
 export {Polygon as Polygon}
 export {Mesh as Mesh}
 export {Graticule as Graticule}
@@ -53,6 +57,7 @@ export {Point as Point}
 export {PointText as PointText}
 export {Centroid as Centroid}
 export {Circle as Circle}
+export {Voronoi as Voronoi}
 
 
 // Function

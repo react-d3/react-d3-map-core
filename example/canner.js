@@ -26,6 +26,10 @@ examples = [
   {
     "link": "centroid",
     "title": "Centroid"
+  },
+  {
+    "link": "voronoi",
+    "title": "Voronoi"
   }
 ];
 

@@ -21,7 +21,8 @@ module.exports = [{
     graticule: './example/src/graticule.jsx',
     map: './example/src/map.jsx',
     point: './example/src/point.jsx',
-    centroid: './example/src/centroid.jsx'
+    centroid: './example/src/centroid.jsx',
+    voronoi: './example/src/voronoi.jsx'
   },
 
   output: {

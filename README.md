@@ -70,6 +70,7 @@ var geoPath = require('react-d3-map-core').geoPath;
 - Point
 - PointText
 - Centroid
+- Circle
 - ChartContainer
 - Graticule
 - Mesh
