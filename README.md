@@ -85,6 +85,8 @@ var geoPath = require('react-d3-map-core').geoPath;
 - geoPath
 - graticule
 - projection
+- scale
+- isTooltipUpdate
 
 
 ## Install
