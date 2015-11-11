@@ -10,6 +10,10 @@ import {
   default as ReactFauxDOM,
 } from 'react-faux-dom';
 
+import {
+  isTooltipUpdate
+} from './utils/tooltipUpdate';
+
 export default class Sphere extends Component {
   constructor(props) {
     super (props);
@@ -30,11 +34,7 @@ export default class Sphere extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps.xTooltip !== this.props.xTooltip ||
-      nextProps.yTooltip !== this.props.yTooltip)
-      return false;
-    else
-      return true;
+    return !isTooltipUpdate(nextProps, nextState, this);
   }
 
   _mkGraticule(dom) {

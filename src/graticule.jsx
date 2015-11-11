@@ -14,6 +14,10 @@ import {
   graticule
 } from './utils/graticule';
 
+import {
+  isTooltipUpdate
+} from './utils/tooltipUpdate';
+
 export default class Graticule extends Component {
   constructor(props) {
     super (props);
@@ -31,11 +35,7 @@ export default class Graticule extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps.xTooltip !== this.props.xTooltip ||
-      nextProps.yTooltip !== this.props.yTooltip)
-      return false;
-    else
-      return true;
+    return !isTooltipUpdate(nextProps, nextState, this);
   }
 
   _mkGraticule(dom) {

@@ -17,6 +17,10 @@ import {
   default as CommonProps,
 } from './commonProps';
 
+import {
+  isTooltipUpdate
+} from './utils/tooltipUpdate';
+
 export default class ChartContainer extends Component {
   constructor(props) {
     super (props);
@@ -25,11 +29,7 @@ export default class ChartContainer extends Component {
   static defaultProps = CommonProps
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps.xTooltip !== this.props.xTooltip ||
-      nextProps.yTooltip !== this.props.yTooltip)
-      return false;
-    else
-      return true;
+    return !isTooltipUpdate(nextProps, nextState, this);
   }
 
   render() {

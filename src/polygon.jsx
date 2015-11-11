@@ -10,6 +10,10 @@ import {
   default as ReactFauxDOM,
 } from 'react-faux-dom';
 
+import {
+  isTooltipUpdate
+} from './utils/tooltipUpdate';
+
 export default class Polygon extends Component {
   constructor(props) {
     super (props);
@@ -22,9 +26,7 @@ export default class Polygon extends Component {
   }
 
   static propTypes = {
-    data: PropTypes.object.isRequired,
-    geoPath: PropTypes.func.isRequired,
-    polygonClass: PropTypes.string
+    return !isTooltipUpdate(nextProps, nextState, this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {

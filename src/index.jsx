@@ -87,7 +87,12 @@ import {
 	scale
 } from './utils/scale';
 
+import {
+	isTooltipUpdate
+} from './utils/tooltipUpdate'
+
 export {geoPath}
 export {graticule}
 export {projection}
 export {scale}
+export {isTooltipUpdate}
