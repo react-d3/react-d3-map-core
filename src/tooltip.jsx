@@ -36,7 +36,8 @@ export default class Tooltip extends Component {
         verticalAlign: 'middle',
         whiteSpace: 'normal',
         border: '1px solid #D3D3D3',
-        maxWidth: '250'
+        maxWidth: '250',
+        maxHeight: '150'
       }
 
       var tdHeadStyle = {
