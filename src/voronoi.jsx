@@ -54,7 +54,7 @@ export default class Voronoi extends Component {
     var voronoiPath = voronoiChart.selectAll('path')
       .data(data)
     .enter().append('path')
-      .attr("d", (d) => {return d.cell.length ? "M" + d.cell.join("L") + "Z" : null; })
+      .attr("d", (d) => {return d.cell ? "M" + d.cell.join("L") + "Z" : null; })
       .datum((d) => {return d; })
       .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
       .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )

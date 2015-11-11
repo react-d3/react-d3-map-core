@@ -35,12 +35,24 @@ export default class Tooltip extends Component {
         padding: '3px',
         verticalAlign: 'middle',
         whiteSpace: 'normal',
-        border: '1px solid #D3D3D3'
+        border: '1px solid #D3D3D3',
+        maxWidth: '250'
+      }
+
+      var tdHeadStyle = {
+        display: 'table-cell',
+        padding: '3px',
+        verticalAlign: 'middle',
+        whiteSpace: 'normal',
+        border: '1px solid #D3D3D3',
+        backgroundColor: '#555',
+        color: '#FFF',
+        textTransform: 'capitalize'
       }
 
       return (
         <div className= "tooltip_tr" style={trStyle} key={i}>
-          <div className= "tooltip_td" style={tdStyle} key={i}>
+          <div className= "tooltip_td" style={tdHeadStyle} key={i}>
             {d}
           </div>
           <div className= "tooltip_td" style={tdStyle} key={i.i}>
