@@ -20,12 +20,9 @@ export default class Sphere extends Component {
   }
 
   static defaultProps = {
+    sphereClass: 'react-d3-map-core__sphere',
     onMouseOver: (d) => {},
     onMouseOut: (d) => {}
-  }
-
-  static defaultProps = {
-    sphereClass: 'react-d3-map-core__sphere'
   }
 
   static propTypes = {

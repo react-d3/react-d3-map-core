@@ -38,6 +38,10 @@ examples = [
   {
     "link": "tooltip",
     "title": "Tooltip"
+  },
+  {
+    "link": "tile",
+    "title": "Tile"
   }
 ];
 

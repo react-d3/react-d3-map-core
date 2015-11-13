@@ -24,7 +24,8 @@ module.exports = [{
     centroid: './example/src/centroid.jsx',
     voronoi: './example/src/voronoi.jsx',
     sphere: './example/src/sphere.jsx',
-    tooltip: './example/src/tooltip.jsx'
+    tooltip: './example/src/tooltip.jsx',
+    tile: './example/src/tile.jsx'
   },
 
   output: {

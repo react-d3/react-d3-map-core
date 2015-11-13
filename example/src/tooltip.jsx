@@ -25,7 +25,6 @@ var geoPath = require('../../lib/index').geoPath;
     },
 
     _onMouseOver: function(dom, d, i) {
-      console.log(dom)
       this.setState({
         xTooltip: d3.event.clientX,
         yTooltip: d3.event.clientY,

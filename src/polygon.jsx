@@ -26,15 +26,13 @@ export default class Polygon extends Component {
   }
 
   static propTypes = {
-    return !isTooltipUpdate(nextProps, nextState, this);
+    data: PropTypes.object.isRequired,
+    geoPath: PropTypes.func.isRequired,
+    polygonClass: PropTypes.string
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps.xTooltip !== this.props.xTooltip ||
-      nextProps.yTooltip !== this.props.yTooltip)
-      return false;
-    else
-      return true;
+    return !isTooltipUpdate(nextProps, nextState, this);
   }
 
   _mkPolygon(dom) {

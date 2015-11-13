@@ -32,7 +32,7 @@ var geoPath = require('react-d3-map-core').geoPath;
   var scale = (width + 1) / 2 / Math.PI;
   var translate = [width / 2, height / 2];
   var precision = .1;
-  var projection = 'mercator';
+
   var polygonClass = 'polygon-test';
 
   var proj = projectionFunc({
@@ -78,6 +78,7 @@ var geoPath = require('react-d3-map-core').geoPath;
 - Sphere
 - Svg
 - Title
+- Tile
 - Tooltip
 
 ## Export functions
@@ -87,6 +88,7 @@ var geoPath = require('react-d3-map-core').geoPath;
 - projection
 - scale
 - isTooltipUpdate
+- tileFunc
 
 
 ## Install

@@ -58,16 +58,21 @@ import {
 	default as Tooltip
 } from './tooltip'
 
-export {Polygon as Polygon}
-export {Mesh as Mesh}
-export {Graticule as Graticule}
-export {Point as Point}
-export {PointText as PointText}
-export {Centroid as Centroid}
-export {Circle as Circle}
-export {Voronoi as Voronoi}
-export {Sphere as Sphere}
-export {Tooltip as Tooltip}
+import {
+	default as Tile
+} from './tile'
+
+export {Polygon}
+export {Mesh}
+export {Graticule}
+export {Point}
+export {PointText}
+export {Centroid}
+export {Circle}
+export {Voronoi}
+export {Sphere}
+export {Tooltip}
+export {Tile}
 
 // Function
 
@@ -89,10 +94,15 @@ import {
 
 import {
 	isTooltipUpdate
-} from './utils/tooltipUpdate'
+} from './utils/tooltipUpdate';
+
+import {
+	tileFunc
+} from './utils/tile';
 
 export {geoPath}
 export {graticule}
 export {projection}
+export {tileFunc}
 export {scale}
 export {isTooltipUpdate}
