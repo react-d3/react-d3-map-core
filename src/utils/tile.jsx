@@ -1,6 +1,6 @@
 "use strict";
 
-require('../lib/d3.geo.tile.min.js');
+require('../library/d3.geo.tile.min.js');
 
 export function tileFunc (props) {
   const {
