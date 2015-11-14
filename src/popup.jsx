@@ -43,12 +43,6 @@ export default class Popup extends Component {
       dist
     } = this.props;
 
-    var style = {
-      left: xPopup? xPopup: -100,
-      top: yPopup? yPopup: -100,
-      position: 'absolute'
-    }
-
     if(contentPopup) {
       var cvContent = this._mkContent();
     }
@@ -58,34 +52,36 @@ export default class Popup extends Component {
       padding: '1px',
       textAlign: 'left',
       borderRadius: '12px',
-      backgroundColor: '#FFF'
+      backgroundColor: '#FFF',
+      left: xPopup? xPopup - 20: -100,
+      top: yPopup? yPopup - 100: -100,
+      position: 'absolute'
     };
 
     var tipContainerStyle= {
       margin: '0 auto',
       width: '40px',
       height: '20px',
-      position: 'relative',
       overflow: 'hidden'
     }
 
     var tipStyle= {
-      boxShadow: '0 3px 14px rgba(0,0,0,0.4)',
       width: '17px',
     	height: '17px',
     	padding: '1px',
     	marginTop: '-10',
-      marginLeft: '20px',
     	WebkitTransform: 'rotate(45deg)',
       MozTransform: 'rotate(45deg)',
       MsTransform: 'rotate(45deg)',
     	OTransform: 'rotate(45deg)',
-      backgroundColor: '#FFF'
+      backgroundColor: '#FFF',
+      left: xPopup? xPopup: -100,
+      top: yPopup? yPopup - 50: -100,
+      position: 'absolute'
     }
 
     return (
       <div
-        style= {style}
         className= "react-d3-map-core__popup_utils"
         ref= "popup"
         >

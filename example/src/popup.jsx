@@ -28,8 +28,8 @@ var tileFunc = require('../../lib/index').tileFunc;
 
     onClick: function(dom, d, x, y) {
       this.setState({
-        xPopup: x - 60,
-        yPopup: y - 100,
+        xPopup: x,
+        yPopup: y,
         contentPopup: d.properties.name
       })
     },
