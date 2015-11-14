@@ -10,9 +10,9 @@ import {
   default as Chart,
 } from './chartContainer';
 
-export {Svg as Svg};
-export {Title as Title};
-export {Chart as Chart};
+export {Svg};
+export {Title};
+export {Chart};
 
 require('../css/react-d3-map.css');
 
@@ -70,6 +70,10 @@ import {
 	default as Marker
 } from './marker'
 
+import {
+	default as Popup
+} from './popup'
+
 export {Polygon}
 export {Mesh}
 export {Graticule}
@@ -83,6 +87,7 @@ export {Tooltip}
 export {Tile}
 export {Arc}
 export {Marker}
+export {Popup}
 
 // Function
 

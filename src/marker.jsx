@@ -27,7 +27,8 @@ export default class Marker extends Component {
     data: PropTypes.object.isRequired,
     markerClass: PropTypes.string,
     onMouseOver: (d) => {},
-    onMouseOut: (d) => {}
+    onMouseOut: (d) => {},
+    onClick: (d) => {}
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -41,7 +42,8 @@ export default class Marker extends Component {
       x,
       y,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      onClick
     } = this.props;
 
     var marker = d3.select(dom);
@@ -65,10 +67,13 @@ export default class Marker extends Component {
       .attr("width", 41)
 
     if(onMouseOver)
-      marker.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      marker.on("mouseover", function (d, i) {return onMouseOver(this, data, x, y, i);})
 
     if(onMouseOver)
-      marker.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+      marker.on("mouseout", function (d, i) {return onMouseOut(this, data, x, y, i);} )
+
+    if(onClick)
+      marker.on("click", function(d, i) { return onClick(this, data, x, y, i); })
 
     return marker;
   }

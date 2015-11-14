@@ -46,6 +46,10 @@ examples = [
   {
     "link": "arc",
     "title": "Arc"
+  },
+  {
+    "link": "popup",
+    "title": "Popup"
   }
 ];
 

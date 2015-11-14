@@ -41,7 +41,8 @@ export default class ChartContainer extends Component {
     var chartTitle;
 
     var divStyle = {
-      width: width
+      width: width,
+      position: 'relative'
     };
 
     if(title)
