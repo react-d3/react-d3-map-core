@@ -25,7 +25,8 @@ module.exports = [{
     voronoi: './example/src/voronoi.jsx',
     sphere: './example/src/sphere.jsx',
     tooltip: './example/src/tooltip.jsx',
-    tile: './example/src/tile.jsx'
+    tile: './example/src/tile.jsx',
+    arc: './example/src/arc.jsx'
   },
 
   output: {

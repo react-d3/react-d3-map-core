@@ -7,10 +7,12 @@ var topojson = require('topojson');
 var Chart = require('../../lib/index').Chart;
 var Point = require('../../lib/index').Point;
 var PointText = require('../../lib/index').PointText;
+var Arc = require('../../lib/index').Arc;
 
 var projectionFunc = require('../../lib/index').projection;
 var geoPath = require('../../lib/index').geoPath;
 
+var css = require('./css/arc.css');
 
 // Example
 (function() {
@@ -70,6 +72,22 @@ var geoPath = require('../../lib/index').geoPath;
     )
   })
 
+  var route = {
+    type: 'LineString',
+    coordinates: [
+      data.features[0].geometry.coordinates,
+      data.features[1].geometry.coordinates,
+      data.features[5].geometry.coordinates
+    ]
+  }
+
+  var arc = (
+    <Arc
+      data= {route}
+      geoPath= {geo}
+    />
+  )
+
   ReactDOM.render(
     <Chart
       title= {title}
@@ -79,8 +97,9 @@ var geoPath = require('../../lib/index').geoPath;
     >
       {points}
       {pointText}
+      {arc}
     </Chart>
-    , document.getElementById('blank-point')
+    , document.getElementById('blank-arc')
   )
 
 })()

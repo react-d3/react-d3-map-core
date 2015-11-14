@@ -62,6 +62,10 @@ import {
 	default as Tile
 } from './tile'
 
+import {
+	default as Arc
+} from './arc'
+
 export {Polygon}
 export {Mesh}
 export {Graticule}
@@ -73,6 +77,7 @@ export {Voronoi}
 export {Sphere}
 export {Tooltip}
 export {Tile}
+export {Arc}
 
 // Function
 
