@@ -81,6 +81,7 @@ var geoPath = require('react-d3-map-core').geoPath;
 - Tile
 - Tooltip
 - Arc
+- Marker
 
 ## Export functions
 

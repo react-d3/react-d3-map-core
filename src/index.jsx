@@ -66,6 +66,10 @@ import {
 	default as Arc
 } from './arc'
 
+import {
+	default as Marker
+} from './marker'
+
 export {Polygon}
 export {Mesh}
 export {Graticule}
@@ -78,6 +82,7 @@ export {Sphere}
 export {Tooltip}
 export {Tile}
 export {Arc}
+export {Marker}
 
 // Function
 

@@ -7,6 +7,7 @@ var topojson = require('topojson');
 var Chart = require('../../lib/index').Chart;
 var Point = require('../../lib/index').Point;
 var PointText = require('../../lib/index').PointText;
+var Marker = require('../../lib/index').Marker;
 
 var projectionFunc = require('../../lib/index').projection;
 var geoPath = require('../../lib/index').geoPath;
@@ -50,7 +51,7 @@ var geoPath = require('../../lib/index').geoPath;
   var pointText = uk_points.map(function(d, i) {
     return (
       <PointText
-        key={i}
+        key={i.text}
         data={d}
         projection= {proj}
         text={text}
@@ -62,11 +63,20 @@ var geoPath = require('../../lib/index').geoPath;
 
   var points = data.features.map(function(d, i) {
     return (
-      <Point
-        key= {i}
-        data= {d}
-        geoPath= {geo}
-      />
+      <g>
+        <Point
+          key= {i}
+          data= {d}
+          geoPath= {geo}
+        />
+
+        <Marker
+          key= {i.i}
+          data= {d}
+          x= {+proj(d.geometry.coordinates)[0]}
+          y= {+proj(d.geometry.coordinates)[1]}
+        />
+      </g>
     )
   })
 
