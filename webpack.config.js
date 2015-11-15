@@ -27,7 +27,9 @@ module.exports = [{
     tooltip: './example/src/tooltip.jsx',
     tile: './example/src/tile.jsx',
     arc: './example/src/arc.jsx',
-    popup: './example/src/popup.jsx'
+    popup: './example/src/popup.jsx',
+    zoom: './example/src/zoom.jsx',
+    zoom2: './example/src/zoom2.jsx'
   },
 
   output: {

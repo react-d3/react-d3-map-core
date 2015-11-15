@@ -43,7 +43,9 @@ export default class Marker extends Component {
       y,
       onMouseOut,
       onMouseOver,
-      onClick
+      onClick,
+      zoomScale,
+      zoomTranslate
     } = this.props;
 
     var marker = d3.select(dom);
@@ -74,6 +76,12 @@ export default class Marker extends Component {
 
     if(onClick)
       marker.on("click", function(d, i) { return onClick(this, data, x, y, i); })
+
+    // console.log(zoomScale, zoomTranslate)
+    // if(zoomScale) {
+    //   console.log('hiere')
+    //   marker.attr("transform", "scale(" + zoomScale + ")")
+    // }
 
     return marker;
   }

@@ -20,9 +20,7 @@ export default class Polygon extends Component {
   }
 
   static defaultProps = {
-    polygonClass: 'react-d3-map-core__polygon',
-    onMouseOver: (d) => {},
-    onMouseOut: (d) => {}
+    polygonClass: 'react-d3-map-core__polygon'
   }
 
   static propTypes = {
@@ -41,7 +39,8 @@ export default class Polygon extends Component {
       polygonClass,
       geoPath,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      onClick
     } = this.props;
 
     var polygon = d3.select(dom);
@@ -50,8 +49,15 @@ export default class Polygon extends Component {
       .datum(data)
       .attr('class', `${polygonClass} polygon`)
       .attr("d", geoPath)
-      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
-      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+
+    if(onMouseOver)
+      polygon.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+
+    if(onMouseOut)
+      polygon.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+
+    if(onClick)
+      polygon.on("click", function (d, i) {return onClick(this, d, i);})
 
     return polygon;
   }

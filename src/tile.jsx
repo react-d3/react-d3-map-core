@@ -44,14 +44,18 @@ export default class Tile extends Component {
 
     var tileDom = d3.select(dom);
 
-    tileDom.selectAll('image')
-      .data(tiles)
-    .enter().append('image')
+    var image = tileDom.selectAll('image')
+      .data(tiles, function(d) { return d; });
+
+    image.exit()
+      .remove();
+
+    image.enter().append('image')
       .attr('class', `${tileClass} tile`)
       .attr("xlinkHref", (d) => { return "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
       .attr("width", Math.round(tiles.scale))
       .attr("height", Math.round(tiles.scale))
-      .attr("x", (d) => { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
+      .attr("x", (d) => { console.log(console.log(d[0])); return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
       .attr("y", (d) => { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); })
       .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
       .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )

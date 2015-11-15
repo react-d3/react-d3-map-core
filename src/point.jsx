@@ -41,7 +41,9 @@ export default class Point extends Component {
       pointClass,
       geoPath,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      zoomScale,
+      zoomTranslate
     } = this.props;
 
     var point = d3.select(dom);
@@ -52,6 +54,10 @@ export default class Point extends Component {
       .attr("d", geoPath)
       .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
       .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+
+    if(zoomScale && zoomTranslate) {
+      point.attr("transform", "translate(" + zoomTranslate + ")scale(" + zoomScale + ")")
+    }
 
     return point;
   }

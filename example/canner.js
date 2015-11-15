@@ -50,6 +50,14 @@ examples = [
   {
     "link": "popup",
     "title": "Popup"
+  },
+  {
+    "link": "zoom",
+    "title": "Zoom"
+  },
+  {
+    "link": "zoom2",
+    "title": "Zoom2"
   }
 ];
 
