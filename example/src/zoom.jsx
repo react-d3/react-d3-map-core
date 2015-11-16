@@ -1,4 +1,3 @@
-"use strict";
 
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -29,12 +28,8 @@ var tileFunc = require('../../lib/index').tileFunc;
     },
 
     onZoom: function(zoomScale, zoomTranslate) {
-      var xPopup = this.state.xPopup;
-      var yPopup = this.state.yPopup;
 
       this.setState({
-        xPopup: newX,
-        yPopup: newY,
         zoomScale: zoomScale,
         zoomTranslate: zoomTranslate
       })
@@ -168,11 +163,6 @@ var tileFunc = require('../../lib/index').tileFunc;
 
       return (
         <g>
-          <Polygon
-            data={land}
-            geoPath= {geo}
-            {...this.props}
-          />
           {points}
         </g>
       )

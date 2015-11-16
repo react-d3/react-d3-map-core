@@ -49,7 +49,7 @@ var css= require('./css/polygon.css');
 
       var width = 500;
       var height = 500;
-      var scale = (1 << 18) / 2 / Math.PI;
+      var scale = 1 << 15;
       var translate = [width / 2, height / 2];
       var projection = 'mercator';
       var center = [-73.95, 40.7];

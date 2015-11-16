@@ -47,6 +47,21 @@ export default class Popup extends Component {
       var cvContent = this._mkContent();
     }
 
+    var closeStyle = {
+      position: 'absolute',
+      padding: '4px 4px 0 0',
+      textAlign: 'center',
+      width: '18px',
+      height: '14px',
+      font: '16px/14px Tahoma, Verdana, sans-serif',
+      color: '#c3c3c3',
+      textDecoration: 'none',
+      fontWeight: 'bold',
+      background: 'transparent',
+      left: xPopup? xPopup - 18: -100,
+      top: yPopup? yPopup - 100: -100
+    }
+
     var popupStyle = {
       boxShadow: '0 3px 14px rgba(0,0,0,0.4)',
       padding: '1px',
@@ -88,6 +103,7 @@ export default class Popup extends Component {
         <div className= "popup_content_wrapper" style={popupStyle}>
           {cvContent}
         </div>
+        <a className="popup_close_button" href="#close" style={closeStyle}>×</a>
         <div className="popup_tip_container" style= {tipContainerStyle}>
           <div className="popup_tip" style= {tipStyle}>
           </div>
