@@ -206,7 +206,7 @@ var tileFunc = require('../../lib/index').tileFunc;
         popup = (
           <Popup
             x= {x}
-            y= {y}
+            y= {y - 50}
             contentPopup={content}
             closeClick= {onClick}
           />

@@ -33,8 +33,8 @@ export default class Popup extends Component {
     var contentForeign = this.refs.popupContentForeignObject;
     var closeForeign = this.refs.popupCloseBtnForeignObject;
 
-    contentForeign.setAttribute('y', y - contentDOM.clientHeight - 50);
-    closeForeign.setAttribute('y', y - contentDOM.clientHeight - 45);
+    contentForeign.setAttribute('y', y - contentDOM.clientHeight);
+    closeForeign.setAttribute('y', y - contentDOM.clientHeight + 5);
   }
 
   _mkContent() {
@@ -115,7 +115,7 @@ export default class Popup extends Component {
           <foreignObject
             ref="popupContentForeignObject"
             x= {x - 23}
-            y= {y - 100}
+            y= {y - 50}
             width= {width}
             height= {"100%"}
           >
@@ -126,7 +126,7 @@ export default class Popup extends Component {
           <foreignObject
             ref="popupCloseBtnForeignObject"
             x= {x - 20}
-            y= {y - 100}
+            y= {y - 50}
             width= {100}
             height= {100}
           >
@@ -134,7 +134,7 @@ export default class Popup extends Component {
           </foreignObject>
           <foreignObject
             x= {x - 7}
-            y= {y - 52}
+            y= {y - 2}
             width= {100}
             height= {100}
           >
