@@ -14,6 +14,10 @@ import {
   isTooltipUpdate
 } from './utils/tooltipUpdate';
 
+import {
+  default as ReactCSSTransitionGroup
+} from 'react-addons-css-transition-group';
+
 export default class Tile extends Component {
   constructor(props) {
     super (props);
@@ -52,6 +56,7 @@ export default class Tile extends Component {
 
     image.enter().append('image')
       .attr('class', `${tileClass} tile`)
+      .attr('key', (d, i) => { return i; })
       .attr("xlinkHref", (d) => { return "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
       .attr("width", Math.round(tiles.scale))
       .attr("height", Math.round(tiles.scale))
@@ -67,7 +72,13 @@ export default class Tile extends Component {
     var tile = ReactFauxDOM.createElement('g');
     var chart = this._mkTile(tile)
 
-    return chart.node().toReact();
+    var chartComponent = chart.node().children.map((d) => {return d.toReact();});
+
+    return (
+      <ReactCSSTransitionGroup component='g' transitionName="tiles" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+        {chartComponent}
+      </ReactCSSTransitionGroup>
+    );
   }
 
 }

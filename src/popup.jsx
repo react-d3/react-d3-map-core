@@ -12,7 +12,29 @@ export default class Popup extends Component {
   }
 
   static defaultProps = {
-    dist: 10
+    dist: 10,
+    width: 200
+  }
+
+  componentDidMount() {
+    this._updateHeight();
+  }
+
+  componentDidUpdate() {
+    this._updateHeight();
+  }
+
+  _updateHeight() {
+    const {
+      y
+    } = this.props;
+
+    var contentDOM = this.refs.popupContentWrapper;
+    var contentForeign = this.refs.popupContentForeignObject;
+    var closeForeign = this.refs.popupCloseBtnForeignObject;
+
+    contentForeign.setAttribute('y', y - contentDOM.clientHeight - 50);
+    closeForeign.setAttribute('y', y - contentDOM.clientHeight - 45);
   }
 
   _mkContent() {
@@ -37,18 +59,22 @@ export default class Popup extends Component {
 
   render() {
     const {
-      xPopup,
-      yPopup,
+      x,
+      y,
       contentPopup,
-      dist
+      width,
+      closeClick
     } = this.props;
 
     if(contentPopup) {
       var cvContent = this._mkContent();
     }
 
+    var popupGroupStyle = {
+      position: 'relative'
+    }
+
     var closeStyle = {
-      position: 'absolute',
       padding: '4px 4px 0 0',
       textAlign: 'center',
       width: '18px',
@@ -57,58 +83,64 @@ export default class Popup extends Component {
       color: '#c3c3c3',
       textDecoration: 'none',
       fontWeight: 'bold',
-      background: 'transparent',
-      left: xPopup? xPopup - 18: -100,
-      top: yPopup? yPopup - 100: -100
+      background: 'transparent'
     }
 
     var popupStyle = {
       boxShadow: '0 3px 14px rgba(0,0,0,0.4)',
       padding: '1px',
-      textAlign: 'left',
+      textAlign: 'center',
       borderRadius: '12px',
       backgroundColor: '#FFF',
-      left: xPopup? xPopup - 20: -100,
-      top: yPopup? yPopup - 100: -100,
-      position: 'absolute'
+      width: 'auto'
     };
 
     var tipContainerStyle= {
       margin: '0 auto',
-      width: '40px',
-      height: '20px',
-      overflow: 'hidden'
+      width: '20px',
+      height: '20px'
     }
 
     var tipStyle= {
       width: '17px',
-    	height: '17px',
-    	padding: '1px',
-    	marginTop: '-10',
-    	WebkitTransform: 'rotate(45deg)',
-      MozTransform: 'rotate(45deg)',
-      MsTransform: 'rotate(45deg)',
-    	OTransform: 'rotate(45deg)',
-      backgroundColor: '#FFF',
-      left: xPopup? xPopup: -100,
-      top: yPopup? yPopup - 50: -100,
-      position: 'absolute'
+    	padding: '1px'
     }
 
     return (
-      <div
+      <g
         className= "react-d3-map-core__popup_utils"
         ref= "popup"
         >
-        <div className= "popup_content_wrapper" style={popupStyle}>
-          {cvContent}
-        </div>
-        <a className="popup_close_button" href="#close" style={closeStyle}>×</a>
-        <div className="popup_tip_container" style= {tipContainerStyle}>
-          <div className="popup_tip" style= {tipStyle}>
-          </div>
-        </div>
-      </div>
+
+          <foreignObject
+            ref="popupContentForeignObject"
+            x= {x - 23}
+            y= {y - 100}
+            width= {width}
+            height= {"100%"}
+          >
+            <div className= "react-d3-map-core__popup__content-wrapper" style={popupStyle} ref="popupContentWrapper">
+              {cvContent}
+            </div>
+          </foreignObject>
+          <foreignObject
+            ref="popupCloseBtnForeignObject"
+            x= {x - 20}
+            y= {y - 100}
+            width= {100}
+            height= {100}
+          >
+            <a className="react-d3-map-core__popup__close-button" href="#close" onClick={closeClick} style={closeStyle} >×</a>
+          </foreignObject>
+          <foreignObject
+            x= {x - 7}
+            y= {y - 52}
+            width= {100}
+            height= {100}
+          >
+            <img className="react-d3-map-core__popup__tip" style= {tipStyle} src="../img/tip.png"/>
+          </foreignObject>
+        </g>
     )
   }
 }

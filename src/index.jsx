@@ -74,6 +74,10 @@ import {
 	default as Popup
 } from './popup'
 
+import {
+	default as ZoomControl
+} from './zoomControl'
+
 export {Polygon}
 export {Mesh}
 export {Graticule}
@@ -88,6 +92,7 @@ export {Tile}
 export {Arc}
 export {Marker}
 export {Popup}
+export {ZoomControl}
 
 // Function
 

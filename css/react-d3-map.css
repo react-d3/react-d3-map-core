@@ -14,3 +14,21 @@
   stroke: #CCC;
   stroke-width: .5px;
 }
+
+.tiles-enter {
+  opacity: 0.01;
+}
+
+.tiles-enter.tiles-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.tiles-leave {
+  opacity: 1;
+}
+
+.tiles-leave.tiles-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

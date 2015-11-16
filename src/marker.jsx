@@ -43,9 +43,7 @@ export default class Marker extends Component {
       y,
       onMouseOut,
       onMouseOver,
-      onClick,
-      zoomScale,
-      zoomTranslate
+      onClick
     } = this.props;
 
     var marker = d3.select(dom);
