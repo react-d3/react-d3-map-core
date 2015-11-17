@@ -24,9 +24,7 @@ export default class Tile extends Component {
   }
 
   static defaultProps = {
-    tileClass: 'react-d3-map-core__tile',
-    onMouseOver: (d) => {},
-    onMouseOut: (d) => {}
+    tileClass: 'react-d3-map-core__tile'
   }
 
   static propTypes = {
@@ -58,12 +56,16 @@ export default class Tile extends Component {
       .attr('class', `${tileClass} tile`)
       .attr('key', (d, i) => { return i; })
       .attr("xlinkHref", (d) => { return "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
-      .attr("width", Math.round(tiles.scale))
-      .attr("height", Math.round(tiles.scale))
-      .attr("x", (d) => { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
-      .attr("y", (d) => { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); })
-      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
-      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+      .attr("width", 1)
+      .attr("height", 1)
+      .attr("x", (d) => { return d[0];})
+      .attr("y", (d) => { return d[1];})
+
+    if(onMouseOut)
+      image.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+
+    if(onMouseOver)
+      image.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     return tileDom;
   }

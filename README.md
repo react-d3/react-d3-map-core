@@ -79,6 +79,7 @@ var geoPath = require('react-d3-map-core').geoPath;
 - Svg
 - Title
 - Tile
+- VectorTile
 - Tooltip
 - Arc
 - Marker

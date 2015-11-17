@@ -63,6 +63,10 @@ import {
 } from './tile'
 
 import {
+	default as VectorTile
+} from './vectortile'
+
+import {
 	default as Arc
 } from './arc'
 
@@ -89,6 +93,7 @@ export {Voronoi}
 export {Sphere}
 export {Tooltip}
 export {Tile}
+export {VectorTile}
 export {Arc}
 export {Marker}
 export {Popup}

@@ -26,6 +26,7 @@ module.exports = [{
     sphere: './example/src/sphere.jsx',
     tooltip: './example/src/tooltip.jsx',
     tile: './example/src/tile.jsx',
+    vectortile: './example/src/vectortile.jsx',
     arc: './example/src/arc.jsx',
     popup: './example/src/popup.jsx',
     zoom: './example/src/zoom.jsx',

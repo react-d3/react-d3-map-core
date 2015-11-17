@@ -1,0 +1,24 @@
+
+.tile {
+  position: absolute;
+  width: 256px;
+  height: 256px;
+}
+
+.tile path {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.tile .water-layer, .tile .river, .tile .stream, .tile .canal { fill: none; stroke: #9DD9D2; stroke-width: 1.5px; }
+.tile .water, .tile .ocean { fill: #9DD9D2; }
+.tile .riverbank { fill: #9DD9D2; }
+.tile .water_boundary, .tile .ocean_boundary, .tile .riverbank_boundary { fill: none; stroke: #93cbc4; stroke-width: 0.5px; }
+.tile .major_road { stroke: #fb7b7a; stroke-width: 1px; }
+.tile .minor_road { stroke: #999; stroke-width: 0.5px; }
+.tile .highway { stroke: #FA4A48; stroke-width: 1.5px; }
+.tile .buildings-layer { stroke: #987284; stroke-width: 0.15px; }
+.tile .park, .tile .nature_reserve, .tile .wood, .tile .protected_land { fill: #88D18A; stroke: #88D18A; stroke-width: 0.5px; }
+.tile .rail { stroke: #503D3F; stroke-width: 0.5px; }
