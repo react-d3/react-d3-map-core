@@ -20,7 +20,8 @@ export default class Polygon extends Component {
   }
 
   static defaultProps = {
-    polygonClass: 'react-d3-map-core__polygon'
+    polygonClass: 'react-d3-map-core__polygon',
+    id: 'react-d3-map-core__polygon_' + Math.floor(Math.random() * 100000)
   }
 
   static propTypes = {
@@ -32,9 +33,10 @@ export default class Polygon extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !isTooltipUpdate(nextProps, nextState, this);
   }
-
+  
   _mkPolygon(dom) {
     const {
+      id,
       data,
       polygonClass,
       geoPath,
@@ -50,14 +52,17 @@ export default class Polygon extends Component {
       .attr('class', `${polygonClass} polygon`)
       .attr("d", geoPath)
 
+    if(id)
+      polygon.attr('id', id);
+
     if(onMouseOver)
-      polygon.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+      polygon.on("mouseover", function (d, i) {return onMouseOver(this, d, id);})
 
     if(onMouseOut)
-      polygon.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+      polygon.on("mouseout", function (d, i) {return onMouseOut(this, d, id);} )
 
     if(onClick)
-      polygon.on("click", function (d, i) {return onClick(this, d, i);})
+      polygon.on("click", function (d, i) {return onClick(this, d, id);})
 
     return polygon;
   }

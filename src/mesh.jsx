@@ -41,7 +41,9 @@ export default class Mesh extends Component {
       meshClass,
       geoPath,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      onClick,
+      id
     } = this.props;
 
     var mesh = d3.select(dom);
@@ -50,8 +52,18 @@ export default class Mesh extends Component {
       .datum(data)
       .attr('class', `${meshClass} mesh`)
       .attr("d", geoPath)
-      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
-      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+
+    if(id)
+      mesh.attr('id', id);
+
+    if(onMouseOver)
+      mesh.on("mouseover", function (d, i) {return onMouseOver(this, d, id);})
+
+    if(onMouseOut)
+      mesh.on("mouseout", function (d, i) {return onMouseOut(this, d, id);} )
+
+    if(onClick)
+      mesh.on("click", function (d, i) {return onClick(this, d, id);})
 
     return mesh;
   }

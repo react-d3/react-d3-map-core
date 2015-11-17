@@ -63,7 +63,8 @@ export default class Popup extends Component {
       y,
       contentPopup,
       width,
-      closeClick
+      closeClick,
+      id
     } = this.props;
 
     if(contentPopup) {
