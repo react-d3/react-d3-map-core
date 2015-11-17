@@ -84,7 +84,8 @@ export default class Popup extends Component {
       color: '#c3c3c3',
       textDecoration: 'none',
       fontWeight: 'bold',
-      background: 'transparent'
+      background: 'transparent',
+      cursor: 'pointer'
     }
 
     var popupStyle = {
@@ -131,7 +132,7 @@ export default class Popup extends Component {
             width= {100}
             height= {100}
           >
-            <a className="react-d3-map-core__popup__close-button" href="#close" onClick={closeClick} style={closeStyle} >×</a>
+            <span className="react-d3-map-core__popup__close-button" onClick={closeClick} style={closeStyle} >×</span>
           </foreignObject>
           <foreignObject
             x= {x - 7}
