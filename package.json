@@ -1,6 +1,6 @@
 {
   "name": "react-d3-map-core",
-  "version": "0.10.5",
+  "version": "0.10.6",
   "description": "react-d3 map core component",
   "main": "./lib/index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "d3": "^3.5.6",
     "queue-async": "^1.0.7",
     "react-addons-css-transition-group": "^0.14.2",
+    "react-d3-map-core": "^0.9.9",
     "react-faux-dom": "^2.1.0"
   },
   "jest": {

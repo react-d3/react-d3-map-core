@@ -91,6 +91,8 @@ var css= require('./css/polygon.css');
           >
             <Tile
               tiles= {tiles}
+              scale= {tiles.scale}
+              translate= {tiles.translate}
             />
             <Polygon
               data= {data}

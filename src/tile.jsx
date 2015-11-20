@@ -29,7 +29,9 @@ export default class Tile extends Component {
 
   static propTypes = {
     tiles: PropTypes.array.isRequired,
-    tileClass: PropTypes.string
+    tileClass: PropTypes.string,
+    scale: PropTypes.number.isRequired,
+    translate: PropTypes.array.isRequired
   }
 
   shouldComponentUpdate(nextProps, nextState) {

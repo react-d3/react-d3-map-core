@@ -19,19 +19,68 @@ var tileFunc = require('../../lib/index').tileFunc;
 (function() {
   var ChartPopup = React.createClass({
     getInitialState: function() {
+      var height= this.props.height;
+      var width = this.props.width;
+      var projeciton= this.props.projection;
+      var translate= this.props.translate;
+      var center = this.props.center;
+      var scale = this.props.scale;
+
+      var proj = projectionFunc({
+        projection: projection,
+        scale: scale,
+        translate: translate,
+        center: center
+      });
+
+      var tiles = tileFunc({
+        scale: proj.scale() * 2 * Math.PI,
+        translate: proj([0, 0]),
+        size: ([width, height])
+      });
+
       return {
         zoomTranslate: null,
-        scale: 1200 * 5,
-        times: 1
+        scale: scale,
+        times: 1,
+        tiles: tiles,
+        proj: proj,
+        tileScale: tiles.scale,
+        tileTranslate: tiles.translate
       }
     },
 
     onZoom: function(zoomScale, zoomTranslate) {
       var times = this.state.times;
+      // tiles only translate and scale
+      // don't change tiles
+
+      var height= this.props.height;
+      var width = this.props.width;
+      var projeciton= this.props.projection;
+      var translate= this.props.translate;
+      var center = this.props.center;
+
+      var proj = projectionFunc({
+        projection: projection,
+        scale: (zoomScale / 2 / Math.PI) * times,
+        translate: zoomTranslate,
+        center: center
+      });
+
+      var tiles = tileFunc({
+        scale: proj.scale() * 2 * Math.PI,
+        translate: proj([0, 0]),
+        size: ([width, height])
+      });
 
       this.setState({
         scale: zoomScale * times,
-        zoomTranslate: zoomTranslate
+        zoomTranslate: zoomTranslate,
+        proj: proj,
+        tiles: tiles,
+        tileScale: tiles.scale,
+        tileTranslate: tiles.translate
       })
     },
 
@@ -55,27 +104,28 @@ var tileFunc = require('../../lib/index').tileFunc;
 
     render: function() {
       var zoomTranslate = this.state.zoomTranslate;
+
+      var tiles = this.state.tiles;
+      var tileScale= this.state.tileScale;
+      var tileTranslate = this.state.tileTranslate;
       var scale = this.state.scale;
+      var proj = this.state.proj;
 
-      var width = 960;
-      var height = 1160;
-      var center = [-5, 55.4]
-      var translate = [width / 2, height / 2];
-      var projection = 'mercator';
-      var pointRadius = 2;
+      var width = this.props.width;
+      var height= this.props.height;
+      var center = this.props.center;
+      var translate = this.props.translate;
+      var projection = this.props.projection;
+      var pointRadius= this.props.pointRadius
 
-      var proj = projectionFunc({
-        projection: projection,
-        scale: scale,
-        translate: zoomTranslate || translate,
-        center: center
-      });
+      // var zoomDelta = 0;
+      // var z, z0;
+      //
+      // z = Math.max(Math.log(projection.scale() * 2 * Math.PI) / Math.LN2 - 8, 0);
+      // // zoom level
+      // z0 = Math.round(z + zoomDelta);
 
-      var tiles = tileFunc({
-        scale: proj.scale() * 2 * Math.PI,
-        translate: proj([0, 0]),
-        size: ([width, height])
-      });
+      // Math.round(scale / tiles.scale)
 
       var uk = require('json!../data/uk.json');
       var uk_points = topojson.feature(uk, uk.objects.places).features;
@@ -97,6 +147,8 @@ var tileFunc = require('../../lib/index').tileFunc;
           >
             <Tile
               tiles= {tiles}
+              scale= {tileScale}
+              translate= {tileTranslate}
             />
             <ZoomShape
               width= {width}
@@ -107,6 +159,7 @@ var tileFunc = require('../../lib/index').tileFunc;
               projection= {projection}
               pointRadius= {pointRadius}
               zoomTranslate= {zoomTranslate}
+              proj= {proj}
             />
           </Chart>
           <ZoomControl
@@ -120,22 +173,8 @@ var tileFunc = require('../../lib/index').tileFunc;
 
   var ZoomShape = React.createClass({
     render() {
-      var zoomTranslate = this.props.zoomTranslate;
-
-      var width= this.props.width;
-      var height = this.props.height;
-      var scale= this.props.scale;
-      var center = this.props.center;
-      var translate= this.props.translate;
-      var projection= this.props.projection;
       var pointRadius= this.props.pointRadius;
-
-      var proj = projectionFunc({
-        projection: projection,
-        scale: scale,
-        translate: zoomTranslate || translate,
-        center: center
-      });
+      var proj = this.props.proj;
 
       var geo = geoPath(proj, {
         pointRadius: pointRadius
@@ -227,8 +266,24 @@ var tileFunc = require('../../lib/index').tileFunc;
     }
   })
 
+  var width = 960;
+  var height = 1160;
+  var center = [-5, 55.4]
+  var translate = [width / 2, height / 2];
+  var projection = 'mercator';
+  var pointRadius = 2;
+  var scale = 1200 * 5;
+
   ReactDOM.render(
-    <ChartPopup />
+    <ChartPopup
+      width= {width}
+      height= {height}
+      center= {center}
+      translate= {translate}
+      projection= {projection}
+      pointRadius= {pointRadius}
+      scale= {scale}
+      />
     , document.getElementById('blank-zoom')
   )
 
