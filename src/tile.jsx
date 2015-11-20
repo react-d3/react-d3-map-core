@@ -71,15 +71,25 @@ export default class Tile extends Component {
   }
 
   render () {
+    const {
+      scale,
+      translate
+    } = this.props;
+
     var tile = ReactFauxDOM.createElement('g');
     var chart = this._mkTile(tile)
 
     var chartComponent = chart.node().children.map((d) => {return d.toReact();});
+    var transform = "scale(" + scale + ")translate(" + translate + ")";
 
     return (
-      <ReactCSSTransitionGroup component='g' transitionName="tiles" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-        {chartComponent}
-      </ReactCSSTransitionGroup>
+      <g
+        transform={transform}
+      >
+        <ReactCSSTransitionGroup component='g' transitionName="tiles" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+          {chartComponent}
+        </ReactCSSTransitionGroup>
+      </g>
     );
   }
 

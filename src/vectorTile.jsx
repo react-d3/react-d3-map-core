@@ -50,6 +50,11 @@ export default class VectorTile extends Component {
     this._mkVectorTile(tilesGroup);
   }
 
+  // componentDidUpdate() {
+  //   var tilesGroup = ReactDOM.findDOMNode(this.refs.vectorTilesGroup)
+  //   this._mkVectorTile(tilesGroup);
+  // }
+
   _mkVectorTile(dom) {
     const {
       vectorTiles,
