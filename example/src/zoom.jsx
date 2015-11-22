@@ -135,6 +135,9 @@ var tileFunc = require('../../lib/index').tileFunc;
       var zoomIn = this.zoomIn;
       var zoomOut = this.zoomOut;
       var style = {position: 'relative'}
+      var onLoad = function(that, d, i) {
+        console.log(that);
+      }
 
       return (
         <div style={style}>
@@ -149,6 +152,7 @@ var tileFunc = require('../../lib/index').tileFunc;
               tiles= {tiles}
               scale= {tileScale}
               translate= {tileTranslate}
+              onLoad= {onLoad}
             />
             <ZoomShape
               width= {width}

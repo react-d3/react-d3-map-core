@@ -52,8 +52,12 @@ export default class Point extends Component {
       .datum(data)
       .attr('class', `${pointClass} point`)
       .attr("d", geoPath)
-      .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
-      .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+
+    if(onMouseOver)
+      point.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
+
+    if(onMouseOut)
+      point.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
     if(zoomScale && zoomTranslate) {
       point.attr("transform", "translate(" + zoomTranslate + ")scale(" + zoomScale + ")")

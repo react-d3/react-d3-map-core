@@ -43,7 +43,8 @@ export default class Tile extends Component {
       tiles,
       tileClass,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      onLoad
     } = this.props;
 
     var tileDom = d3.select(dom);
@@ -51,11 +52,14 @@ export default class Tile extends Component {
     var image = tileDom.selectAll('image')
       .data(tiles, function(d) { return d; });
 
+    image.exit()
+      .remove();
+
     image.enter().append('image')
       .attr('class', `${tileClass} tile`)
       .attr('key', (d, i) => { return i; })
+      .attr('id', (d, i) => { return 'react-d3-map-core__tiles__' + d.join('-')})
       .attr("xlinkHref", (d) => {
-
         var c = d.slice();
 
         var minCol = 0;
@@ -78,11 +82,15 @@ export default class Tile extends Component {
       .attr("x", (d) => { return d[0];})
       .attr("y", (d) => { return d[1];})
 
+
     if(onMouseOut)
       image.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
 
     if(onMouseOver)
       image.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
+
+    if(onLoad)
+      image.attr("onload", function(d, i) {return onLoad(this, d, i);})
 
     return tileDom;
   }
