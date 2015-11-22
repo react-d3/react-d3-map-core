@@ -11,15 +11,22 @@ export default class ZoomControl extends Component {
     super(props);
   }
 
+  static defaultProps = {
+    left: 0,
+    top: 0
+  }
+
   render() {
     const {
       zoomInClick,
-      zoomOutClick
+      zoomOutClick,
+      top,
+      left
     } = this.props;
 
     var zoomControlStyle = {
-      left: 0,
-      top: 0,
+      left: left,
+      top: top,
       position: 'absolute',
       border: '2px solid rgba(0,0,0,0.2)',
       backgroundClip: 'padding-box',
