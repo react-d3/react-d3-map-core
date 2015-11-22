@@ -118,15 +118,6 @@ var tileFunc = require('../../lib/index').tileFunc;
       var projection = this.props.projection;
       var pointRadius= this.props.pointRadius
 
-      // var zoomDelta = 0;
-      // var z, z0;
-      //
-      // z = Math.max(Math.log(projection.scale() * 2 * Math.PI) / Math.LN2 - 8, 0);
-      // // zoom level
-      // z0 = Math.round(z + zoomDelta);
-
-      // Math.round(scale / tiles.scale)
-
       var uk = require('json!../data/uk.json');
       var uk_points = topojson.feature(uk, uk.objects.places).features;
 

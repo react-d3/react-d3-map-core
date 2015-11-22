@@ -38,81 +38,62 @@ export default class Tile extends Component {
     return !isTooltipUpdate(nextProps, nextState, this);
   }
 
-  _mkTile(dom) {
-    const {
-      tiles,
-      tileClass,
-      onMouseOut,
-      onMouseOver,
-      onLoad
-    } = this.props;
-
-    var tileDom = d3.select(dom);
-
-    var image = tileDom.selectAll('image')
-      .data(tiles, function(d) { return d; });
-
-    image.exit()
-      .remove();
-
-    image.enter().append('image')
-      .attr('class', `${tileClass} tile`)
-      .attr('key', (d, i) => { return i; })
-      .attr('id', (d, i) => { return 'react-d3-map-core__tiles__' + d.join('-')})
-      .attr("xlinkHref", (d) => {
-        var c = d.slice();
-
-        var minCol = 0;
-        var maxCol = Math.pow(2, d[2]);
-
-        while(c[0] < minCol) c[0] += maxCol;
-        while(c[0] >= maxCol) c[0] -= maxCol;
-
-        var z = c[2];
-        var y = c[1];
-        var x = c[0];
-
-        if(y >= maxCol || (c[2] === 0 && y > 0)) return;
-        if(y < minCol) return;
-
-        return "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + z + "/" + x + "/" + y + ".png";
-      })
-      .attr("width", 1)
-      .attr("height", 1)
-      .attr("x", (d) => { return d[0];})
-      .attr("y", (d) => { return d[1];})
-
-
-    if(onMouseOut)
-      image.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
-
-    if(onMouseOver)
-      image.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
-
-    if(onLoad)
-      image.attr("onload", function(d, i) {return onLoad(this, d, i);})
-
-    return tileDom;
-  }
-
   render () {
     const {
       scale,
-      translate
+      translate,
+      tiles,
+      tileClass,
+      onLoad
     } = this.props;
 
-    var tile = ReactFauxDOM.createElement('g');
-    var chart = this._mkTile(tile)
-
-    var chartComponent = chart.node().children.map((d) => {return d.toReact();});
     var transform = "scale(" + scale + ")translate(" + translate + ")";
+    var tilesGroup = tiles.map((t, i) => {
+
+      var id = 'react-d3-map-core__tiles__' + t.join('-');
+
+      var c = t.slice();
+
+      var minCol = 0;
+      var maxCol = Math.pow(2, t[2]);
+
+      while(c[0] < minCol) c[0] += maxCol;
+      while(c[0] >= maxCol) c[0] -= maxCol;
+
+      var z = c[2];
+      var y = c[1];
+      var x = c[0];
+      var xlink;
+
+      if((y >= maxCol || (c[2] === 0 && y > 0))
+        || y < minCol){
+        xlink = null;
+      }else {
+        xlink = "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + z + "/" + x + "/" + y + ".png";
+      }
+
+      return (
+        <image
+          className= {tileClass + ' tile'}
+          key= {t.join('-')}
+          id= {id}
+          xlinkHref= {xlink}
+          width= {1}
+          height= {1}
+          x= {t[0]}
+          y= {t[1]}
+          onLoad= {onLoad}
+        ></image>
+      )
+    })
+
 
     return (
       <g
         transform={transform}
       >
-        <ReactCSSTransitionGroup component='g' transitionName="tiles" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
-          {chartComponent}
+        <ReactCSSTransitionGroup component='g' transitionName="tiles" transitionEnterTimeout={100} transitionLeaveTimeout={100}>
+          {tilesGroup}
         </ReactCSSTransitionGroup>
       </g>
     );
