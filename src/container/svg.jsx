@@ -21,7 +21,8 @@ export default class ChartSvg extends Component {
 
   static defaultProps = Object.assign(CommonProps, {
     svgClassName: 'react-d3-map-core__container_svg',
-    id: `react-d3-map-core__container_svg__${Math.floor(Math.random() * 100000)}`
+    id: `react-d3-map-core__container_svg__${Math.floor(Math.random() * 100000)}`,
+    scaleExtent: [1 << 12, 1 << 28]
   })
 
   static propTypes = {

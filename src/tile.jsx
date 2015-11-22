@@ -51,13 +51,28 @@ export default class Tile extends Component {
     var image = tileDom.selectAll('image')
       .data(tiles, function(d) { return d; });
 
-    image.exit()
-      .remove();
-
     image.enter().append('image')
       .attr('class', `${tileClass} tile`)
       .attr('key', (d, i) => { return i; })
-      .attr("xlinkHref", (d) => { return "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+      .attr("xlinkHref", (d) => {
+
+        var c = d.slice();
+
+        var minCol = 0;
+        var maxCol = Math.pow(2, d[2]);
+
+        while(c[0] < minCol) c[0] += maxCol;
+        while(c[0] >= maxCol) c[0] -= maxCol;
+
+        var z = c[2];
+        var y = c[1];
+        var x = c[0];
+
+        if(y >= maxCol || (c[2] === 0 && y > 0)) return;
+        if(y < minCol) return;
+
+        return "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + z + "/" + x + "/" + y + ".png";
+      })
       .attr("width", 1)
       .attr("height", 1)
       .attr("x", (d) => { return d[0];})
