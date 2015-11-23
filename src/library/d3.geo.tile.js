@@ -1,8 +1,5 @@
-import {
-  default as d3
-} from 'd3';
-
-d3.geo.tile = function() {
+// d3.geo.tile
+export default function () {
   var size = [960, 500],
       scale = 256,
       translate = [size[0] / 2, size[1] / 2],
