@@ -1,3 +1,5 @@
+import d3 from 'd3';
+
 // d3.geo.tile
 export default function () {
   var size = [960, 500],

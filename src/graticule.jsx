@@ -10,6 +10,8 @@ import {
   default as ReactFauxDOM,
 } from 'react-faux-dom';
 
+import d3 from 'd3';
+
 import {
   graticule
 } from './utils/graticule';

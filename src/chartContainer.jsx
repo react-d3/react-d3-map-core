@@ -5,6 +5,8 @@ import {
   Component,
 } from 'react';
 
+import d3 from 'd3';
+
 import {
   default as ChartSvg
 } from './container/svg';
