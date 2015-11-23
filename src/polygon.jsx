@@ -33,7 +33,7 @@ export default class Polygon extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !isTooltipUpdate(nextProps, nextState, this);
   }
-  
+
   _mkPolygon(dom) {
     const {
       id,
@@ -51,6 +51,7 @@ export default class Polygon extends Component {
       .datum(data)
       .attr('class', `${polygonClass} polygon`)
       .attr("d", geoPath)
+      .style('fill', '#222')
 
     if(id)
       polygon.attr('id', id);

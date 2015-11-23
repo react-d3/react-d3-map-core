@@ -14,8 +14,6 @@ export {Svg};
 export {Title};
 export {Chart};
 
-require('../css/react-d3-map.css');
-
 // core
 
 import {

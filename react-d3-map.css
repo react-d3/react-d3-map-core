@@ -1,20 +1,3 @@
-.graticule {
-  fill: none;
-  stroke: #777;
-  stroke-opacity: .5;
-  stroke-width: .5px;
-}
-
-.polygon {
-  fill: #222;
-}
-
-.mesh {
-  fill: none;
-  stroke: #CCC;
-  stroke-width: .5px;
-}
-
 .tiles-enter {
   opacity: 0.01;
 }

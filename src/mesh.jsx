@@ -52,6 +52,9 @@ export default class Mesh extends Component {
       .datum(data)
       .attr('class', `${meshClass} mesh`)
       .attr("d", geoPath)
+      .style('fill', 'none')
+      .style('stroke', '#CCC')
+      .style('stroke-width', '.5px')
 
     if(id)
       mesh.attr('id', id);
