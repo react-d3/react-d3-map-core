@@ -69,7 +69,7 @@ export default class Tile extends Component {
         || y < minCol){
         xlink = null;
       }else {
-        xlink = "http://" + ["a", "b", "c"][Math.random() * 3 | 0] + ".tile.openstreetmap.org/" + z + "/" + x + "/" + y + ".png";
+        xlink = "http://a.tile.openstreetmap.org/" + z + "/" + x + "/" + y + ".png";
       }
 
       return (

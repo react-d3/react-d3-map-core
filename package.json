@@ -34,6 +34,9 @@
     "react-addons-css-transition-group": "^0.14.2",
     "react-faux-dom": "^2.1.0"
   },
+  "devDependencies": {
+    "react": "^0.14.3"
+  },
   "jest": {
     "scriptPreprocessor": "./node_modules/babel-jest",
     "unmockedModulePathPatterns": [
