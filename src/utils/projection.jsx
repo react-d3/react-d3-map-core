@@ -44,7 +44,39 @@ export function projection(props) {
 
   var proj = _mkProjectionSettings(props, projFunc);
 
+  // proj stream then transfrom stream
+  var projStream = proj.stream;
+  proj.stream = function(s) {
+    return projStream(_transform().stream(s));
+  }
+
   return proj;
+}
+
+function _transform() {
+  return d3.geo.transform({
+    point: function(x,y) {
+      this.stream.point(Math.round(x), Math.round(y));
+    },
+    lineStart: function() {
+      this.stream.lineStart();
+    },
+    lineEnd: function() {
+      this.stream.lineEnd();
+    },
+    polygonStart: function() {
+      this.stream.polygonStart();
+    },
+    polygonEnd: function() {
+      this.stream.polygonEnd();
+    },
+    pointRadius: function() {
+      this.stream.pointRadius();
+    },
+    sphere: function() {
+      this.stream.sphere();
+    }
+  });
 }
 
 function _mkProjectionSettings(props, func) {
