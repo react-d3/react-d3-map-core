@@ -8,43 +8,59 @@ export function projection(props) {
     pointRadius
   } = props;
 
-  var projFunc;
+  var projFunc = _getProj(projection);
 
-  if(projection === 'albers')
-    projFunc = d3.geo.albers();
-  else if (projection === 'mercator')
-    projFunc = d3.geo.mercator();
-  else if (projection === 'albersUsa')
-    projFunc = d3.geo.albersUsa();
-  else if (projection === 'azimuthalEqualArea')
-    projFunc = d3.geo.azimuthalEqualArea();
-  else if (projection === 'azimuthalEquidistant')
-    projFunc = d3.geo.azimuthalEquidistant();
-  else if (projection === 'conicEqualArea')
-    projFunc = d3.geo.conicEqualArea();
-  else if (projection === 'conicConformal')
-    projFunc = d3.geo.conicConformal();
-  else if (projection === 'conicEquidistant')
-    projFunc = d3.geo.conicEquidistant();
-  else if (projection === 'equirectangular')
-    projFunc = d3.geo.equirectangular();
-  else if (projection === 'gnomonic')
-    projFunc = d3.geo.gnomonic();
-  else if (projection === 'orthographic')
-    projFunc = d3.geo.orthographic();
-  else if (projection === 'stereographic')
-    projFunc = d3.geo.stereographic();
-  else if (projection === 'transverseMercator')
-    projFunc = d3.geo.transverseMercator();
-  else if (projection === null)
-    return null;
-  else
-    new Error(`Please check your projection setting. "${projection}" projection is invalid. `)
-
+  var simplifyArea;
+  var bounds;
 
   var proj = _mkProjectionSettings(props, projFunc);
 
+  if (!props.simplify)
+    return proj;
+
+  var area = props.simplifyArea || 1;
+  var simplify = _simplify(area);
+  var round = _round();
+  var projStream = proj.stream;
+
+  // clip path with bounds
+  if (props.clip && props.bounds) {
+     var bound = props.bounds;
+     var clip = d3.geo.clipExtent()
+     .extent(props.bounds);
+ 
+    proj.stream = function(s) {
+      return simplify.stream(projStream(round.stream(clip.stream(s))));
+    };
+  }
+  else {
+    proj.stream = function(s) {
+      return simplify.stream(projStream(round.stream(s)));
+    };
+  }
+
   return proj;
+}
+
+function _getProj(projection) {
+  /* albersUsa
+   * azimuthalEquidistant
+   * azimuthalEqualArea
+   * conicEqulArea
+   * conicConformal
+   * conicEquidistant
+   * equirectangularm
+   * gnomonicm
+   * orthographicm
+   * stereographic
+   * transverseMercator */
+
+  if (d3.geo.hasOwnProperty(projection))
+    return d3.geo[projection]();
+  else if (projection === null)
+    return null;
+  else
+    new Error(`Please check your projection setting. "${projection}" projection is invalid. `);
 }
 
 function _mkProjectionSettings(props, func) {
@@ -67,5 +83,31 @@ function _mkProjectionSettings(props, func) {
   if(parallels) func.parallels(parallels);
 
   return func;
+}
 
+function _round(area) {
+  return d3.geo.transform({
+    point: function(x, y, z) {
+      this.stream.point(Math.round(x), Math.round(y));
+    },
+    sphere: function() {
+      this.stream.sphere();
+    }
+  });
+}
+
+function _simplify(area) {
+  return d3.geo.transform({
+    point: function(x, y, z) {
+      if (!z) {
+        this.stream.point(x, y);
+      }
+      else if (z >= area) {
+        this.stream.point(x, y);
+      }
+    },
+    sphere: function() {
+      this.stream.sphere();
+    }
+  });
 }
