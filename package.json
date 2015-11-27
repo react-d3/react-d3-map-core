@@ -23,6 +23,7 @@
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.11.0",
     "topojson": "^1.6.19",
+    "react": "^0.14.3",
     "react-dom": "^0.14.0"
   },
   "peerDepencies": {
@@ -33,9 +34,6 @@
     "queue-async": "^1.0.7",
     "react-addons-css-transition-group": "^0.14.2",
     "react-faux-dom": "^2.1.0"
-  },
-  "devDependencies": {
-    "react": "^0.14.3"
   },
   "jest": {
     "scriptPreprocessor": "./node_modules/babel-jest",

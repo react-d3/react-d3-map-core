@@ -18,7 +18,10 @@ var Arc = require('../../lib/index').Arc;
 
   var topodata = require('json!../data/world-50m.json');
 
+  // need presimplify
+  topojson.presimplify(topodata);
   var data = topojson.feature(topodata, topodata.objects.land);
+
   var scale = (width + 1) / 2 / Math.PI;
   var translate = [width / 2, height / 2];
   var precision = .1;
@@ -29,7 +32,11 @@ var Arc = require('../../lib/index').Arc;
     projection: projection,
     scale: scale,
     translate: translate,
-    precision: precision
+    precision: precision,
+    simplify: true,
+    simplifyArea: 1,
+    clip: true,
+    bounds: [[0, 0], [width, height/2]]
   });
   var geo = geoPath(proj);
 
