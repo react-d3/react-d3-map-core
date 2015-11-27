@@ -18,7 +18,7 @@ export function projection(props) {
   if (!props.simplify)
     return proj;
 
-  var area = props.simplifyArea || 1;
+  var area = props.simplifyArea || 0;
   var simplify = _simplify(area);
   var round = _round();
   var projStream = proj.stream;
