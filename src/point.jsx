@@ -39,9 +39,11 @@ export default class Point extends Component {
 
   _mkPoint(dom) {
     const {
+      id,
       data,
       pointClass,
       geoPath,
+      onClick,
       onMouseOut,
       onMouseOver,
       zoomScale,
@@ -55,15 +57,21 @@ export default class Point extends Component {
       .attr('class', `${pointClass} point`)
       .attr("d", geoPath)
 
+    if(id)
+      point.attr('id', id);
+
     if(onMouseOver)
       point.on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
 
     if(onMouseOut)
       point.on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
 
-    if(zoomScale && zoomTranslate) {
+    if(onClick)
+      point.on("click", function(d, i) {return onClick(this, d, id)})
+
+    if(zoomScale && zoomTranslate)
       point.attr("transform", "translate(" + zoomTranslate + ")scale(" + zoomScale + ")")
-    }
+
 
     return point;
   }
