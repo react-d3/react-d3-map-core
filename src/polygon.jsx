@@ -52,8 +52,7 @@ export default class Polygon extends Component {
     polygon
       .datum(data)
       .attr('class', `${polygonClass} polygon`)
-      .attr("d", geoPath)
-      .style('fill', '#222');
+      .attr("d", geoPath);
 
     if(id)
       polygon.attr('id', id);
