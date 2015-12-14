@@ -55,6 +55,8 @@ var Tile = require('../../lib/index').Tile;
         polygonClass={polygonClass}
       />
       <Tile
+        scale= {tiles.scale}
+        translate= {tiles.translate}
         tiles= {tiles}
       />
     </Chart>
