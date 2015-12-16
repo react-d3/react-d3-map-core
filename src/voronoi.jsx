@@ -61,7 +61,15 @@ export default class Voronoi extends Component {
       .on("mouseover", function (d, i) {return onMouseOver(this, d, i);})
       .on("mouseout", function (d, i) {return onMouseOut(this, d, i);} )
       .style('fill', 'none')
-      .style('pointer-events', 'all');
+      .style('pointer-events', 'all')
+      .each(function(d) {
+        var dom = d3.select(this)
+        if(d.style) {
+          for(var key in d.style) {
+            dom.style(key, d.style[key]);
+          }
+        }
+      })
 
     return voronoiChart;
   }

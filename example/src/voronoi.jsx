@@ -49,6 +49,12 @@ var geoPath = require('../../lib/index').geoPath;
   var onMouseOut = function(dom, d, i) {console.log(d, i);}
   var onMouseOver = function(dom, d, i) {console.log(d, i);}
 
+  data.features = data.features.map(function(d) {
+    d.style = {
+      'fill': 'green'
+    };
+    return d;
+  })
 
   var points = data.features.map(function(d, i) {
     return (
