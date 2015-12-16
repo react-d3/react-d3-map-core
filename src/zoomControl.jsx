@@ -13,7 +13,16 @@ export default class ZoomControl extends Component {
 
   static defaultProps = {
     left: 0,
-    top: 0
+    top: 0,
+    zoomInClick: () => {},
+    zoomOutClick: () => {}
+  }
+
+  static propTypes = {
+    left: PropTypes.number.isRequired,
+    top: PropTypes.number.isRequired,
+    zoomInClick: PropTypes.func.isRequired,
+    zoomOutClick: PropTypes.func.isRequired
   }
 
   render() {
