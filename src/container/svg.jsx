@@ -45,17 +45,18 @@ export default class ChartSvg extends Component {
       center
     } = this.props;
 
+    var tau = 2 * Math.PI;
 
     // implement zoom if xscale and y scale is set!
     if(projection && onZoom) {
       var center = projection(center);
 
       var zoom = d3.behavior.zoom()
-        .scale(projection.scale() * 2 * Math.PI)
+        .scale(projection.scale() * tau)
         .translate([width - center[0], height - center[1]])
 
       if(scaleExtent)
-        zoom.scaleExtent(scaleExtent);
+        zoom.scaleExtent([scaleExtent[0] * tau, scaleExtent[1] * tau]);
 
       if(onZoom)
         zoom.on("zoom", () => { onZoom.call(this, zoom.scale(), zoom.translate()) });
