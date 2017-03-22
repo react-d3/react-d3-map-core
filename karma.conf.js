@@ -17,13 +17,15 @@ module.exports = function (config) {
       devtool: 'inline-source-map',
       module: {
         loaders: [
-          { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ }
+          { 
+            test: /\.jsx?$/,         // Match both .js and .jsx files
+            exclude: /node_modules/, 
+            loader: "babel-loader"
+          }
         ]
       },
       resolve: {
-        alias: {
-          'react-d3-map-core': path.join(__dirname, './lib')
-        }
+        extensions: ['.webpack.js', '.web.js', '.js', '.jsx']
       }
     },
     webpackServer: {
