@@ -1,13 +1,9 @@
-import {
-  default as React
-} from 'react';
+import React from 'react';
 
-import {
-  default as TestUtils
-} from 'react-addons-test-utils';
+import TestUtils from 'react-addons-test-utils';
 
-const expect = require('expect');
-const ZoomControl = require('../lib/zoomControl');
+import expect from 'expect';
+import ZoomControl from '../src/zoomControl';
 
 describe('ZoomControl', () => {
 

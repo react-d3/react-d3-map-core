@@ -43,7 +43,7 @@ module.exports = [{
       {
         test: [/\.jsx$/, /\.js$/],
         exclude: /node_modules/,
-        loaders: ["jsx-loader"],
+        loaders: ["babel-loader"],
       },
       {
         test: /\.css$/,
@@ -53,6 +53,6 @@ module.exports = [{
   },
 
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
+    extensions: ['.webpack.js', '.web.js', '.js', '.jsx']
   }
 }];
